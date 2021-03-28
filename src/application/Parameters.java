@@ -1,7 +1,7 @@
 package application;
 import java.time.LocalDateTime;
 
-abstract class Parameters {
+public class Parameters { // public keyword is temporary, will change to abstract
 	private final int MAXGROUP = 20;
 	protected enum LEVEL {
 		HANDICAP,
@@ -101,4 +101,26 @@ abstract class Parameters {
 		System.out.println("Error: "+ e);
 		
 	}
+	
+	// get methods
+	protected LEVEL getdifficulty () {
+		return difficulty;
+	}
+	protected float getLowerPrice () {
+		return price[0];
+	}
+	protected float getHigherPrice () {
+		return price[1];
+	}
+	protected int getgroupSize () {
+		return groupSize;
+		
+	}
+	protected LocalDateTime getcheckIn () {
+		return checkIn;
+	}
+	protected LocalDateTime getcheckOut () {
+		return checkOut;
+	}
+
 }

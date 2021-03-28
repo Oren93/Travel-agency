@@ -10,19 +10,25 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import java.time.LocalDateTime;
 
 /**
- * @author Team T3
+ * @author Team T1
  *
  */
 class ControllerTest {
-
+	int difficulty;
+	float [] priceRange;
+	int capacity;
+	LocalDateTime start;
+	LocalDateTime end;
+	static Parameters obj;
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		System.out.println("Test start");
+		obj = new Parameters ();
 	}
 
 	/**
@@ -30,7 +36,6 @@ class ControllerTest {
 	 */
 	@AfterAll
 	static void tearDownAfterClass() throws Exception {
-		System.out.println("Test done");
 	}
 
 	/**
