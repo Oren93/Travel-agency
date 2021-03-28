@@ -11,9 +11,9 @@ public class MockTController implements TController{
 	private LocalDateTime checkOut3 = new LocalDateTime.of(2021, 6, 1, 7, 8);
 		
 	public searchTrips(Parameters para) {
-		Trip t1 = new trip("ID1",0,70,1,[checkIn1,CheckOut1],"RVK");
-		Trip t2 = new trip("ID2",0, 10, 1, [checkIn2,CheckOut2],"RVK");
-		Trip t3 = new trip("ID3",0, 50, 1, [checkIn3,CheckOut3],"RVK");
+		Trip t1 = new Trip("ID1",0,70,1,[checkIn1,CheckOut1],"RVK");
+		Trip t2 = new Trip("ID2",0, 10, 1, [checkIn2,CheckOut2],"RVK");
+		Trip t3 = new Trip("ID3",0, 50, 1, [checkIn3,CheckOut3],"RVK");
 		return Trip[] trips = [t1, t2, t3];
 	}
 }
