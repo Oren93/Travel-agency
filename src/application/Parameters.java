@@ -1,7 +1,7 @@
 package application;
 import java.time.LocalDateTime;
 
-public class Parameters { // public keyword is temporary, will change to abstract
+public class Parameters { // public keyword is temporary, will change to abstract (don't think it needs to be abstract, since there are no abstract methods)
 	private final int MAXGROUP = 20;
 	protected enum LEVEL {
 		HANDICAP,
@@ -10,7 +10,7 @@ public class Parameters { // public keyword is temporary, will change to abstrac
 		HARD
 	}; // I am not sure I like this enum thing, perhaps better to use constants instead
 	private LEVEL difficulty;
-	private float [] price;
+	private float [] price; //why array?
 	private int groupSize;	// "capacity" in the model
 	private LocalDateTime checkIn; // might be changed later to nanoseconds instead  
 	private LocalDateTime checkOut; /* this object includes both date and time, 
