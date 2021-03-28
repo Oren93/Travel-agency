@@ -20,14 +20,15 @@ class ControllerTest {
 	int difficulty;
 	float [] priceRange;
 	int capacity;
-	LocalDateTime start;
-	LocalDateTime end;
-	static Parameters obj;
+	LocalDateTime fromDate;
+	LocalDateTime untilDate;
+	static Parameters obj; // mock object
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
+		System.out.println("test started");
 		obj = new Parameters ();
 	}
 
@@ -36,6 +37,7 @@ class ControllerTest {
 	 */
 	@AfterAll
 	static void tearDownAfterClass() throws Exception {
+		System.out.println("test completed");
 	}
 
 	/**
@@ -43,6 +45,11 @@ class ControllerTest {
 	 */
 	@BeforeEach
 	void setUp() throws Exception {
+		fromDate = LocalDateTime.now().plusDays(5); // booking 5 days in advance
+		untilDate = fromDate.plusWeeks(1); // duration of 1 week trip
+		difficulty = 3;
+		priceRange = new float [] {1000, 100000};
+		capacity = 6;
 	}
 
 	/**
@@ -52,9 +59,10 @@ class ControllerTest {
 	void tearDown() throws Exception {
 	}
 
+	
 	@Test
 	void test() {
-		fail("Not yet implemented");
+		assertEquals(LocalDateTime.now().plusDays(5+7),obj.getcheckOut());
 	}
 
 }
