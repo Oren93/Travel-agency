@@ -1,14 +1,14 @@
 public class MockTController implements TController{
 	private Trip[] threeTrips = new Trip[3];
 	//trip 1
-	private LocalDateTime checkIn1 = new LocalDateTime.of(2021, 6, 1, 5, 5);
-	private LocalDateTime checkOut1 = new LocalDateTime.of(2021, 6, 1, 5, 8);
+	private LocalDateTime checkIn1 = new LocalDateTime.of(2021, 6, 1, 11, 0);
+	private LocalDateTime checkOut1 = new LocalDateTime.of(2021, 6, 1, 16, 0);
 	//trip2
-	private LocalDateTime checkIn2 = new LocalDateTime.of(2021, 6, 1, 6, 5);
-	private LocalDateTime checkOut2 = new LocalDateTime.of(2021, 6, 1, 6, 8);
+	private LocalDateTime checkIn2 = new LocalDateTime.of(2021, 6, 2, 11, 0);
+	private LocalDateTime checkOut2 = new LocalDateTime.of(2021, 6, 2, 16, 0);
 	//trip3
-	private LocalDateTime checkIn3 = new LocalDateTime.of(2021, 6, 1, 7, 5);
-	private LocalDateTime checkOut3 = new LocalDateTime.of(2021, 6, 1, 7, 8);
+	private LocalDateTime checkIn3 = new LocalDateTime.of(2021, 6, 3, 11, 0);
+	private LocalDateTime checkOut3 = new LocalDateTime.of(2021, 6, 3, 16, 0);
 		
 	public searchTrips(Parameters para) {
 		Trip t1 = new Trip("ID1",0,70,1,[checkIn1,CheckOut1],"RVK");
