@@ -52,21 +52,21 @@ public void testReturnType() {
 @Test
 public void testTripsSameAsMock() {	
 	for(i=0; i<sController.search(validPara).length; i++){
-		asserTrue(Arrays.asList(MockTController.searchTrips(validPara)).containsAll(Arrays.asList(sController.search(validPara)[i]).Trips);)
+		asserTrue(Arrays.asList(MockTController.searchTrips(validPara)).containsAll(Arrays.asList(sController.search(validPara)[i]).Trips));
 	}
 }
 
 @Test
 public void testFlightsSameAsMock() {	
 	for(i=0; i<sController.search(validPara).length; i++){
-		asserTrue(Arrays.asList(MockFController.searchFlights(validPara)).containsAll(Arrays.asList(sController.search(validPara)[i]).Flights);)
+		asserTrue(Arrays.asList(MockFController.searchFlights(validPara)).containsAll(Arrays.asList(sController.search(validPara)[i]).Flights));
 	}
 }
 
 @Test
 public void testRoomsSameAsMock() {	
 	for(i=0; i<sController.search(validPara).length; i++){
-		asserTrue(Arrays.asList(MockHController.searchRooms(validPara)).containsAll(Arrays.asList(sController.search(validPara)[i]).Rooms);)
+		asserTrue(Arrays.asList(MockHController.searchRooms(validPara)).containsAll(Arrays.asList(sController.search(validPara)[i]).Rooms));
 	}
 }
 
