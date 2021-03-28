@@ -12,7 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * @author Oren1
+ * @author Team T3
  *
  */
 class ControllerTest {
@@ -22,6 +22,7 @@ class ControllerTest {
 	 */
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
+		System.out.println("Test start");
 	}
 
 	/**
@@ -29,6 +30,7 @@ class ControllerTest {
 	 */
 	@AfterAll
 	static void tearDownAfterClass() throws Exception {
+		System.out.println("Test done");
 	}
 
 	/**
