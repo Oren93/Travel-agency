@@ -105,6 +105,7 @@ public class Parameters { // public keyword is temporary, will change to abstrac
 	// get methods
 	protected LEVEL getdifficulty () {
 		return difficulty;
+		// TODO check if enum are stored as 0-3
 	}
 	protected float getLowerPrice () {
 		return price[0];
