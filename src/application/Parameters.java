@@ -10,7 +10,7 @@ public class Parameters { // public keyword is temporary, will change to abstrac
 		HARD
 	}; // I am not sure I like this enum thing, perhaps better to use constants instead
 	private LEVEL difficulty;
-	private float [] price; //why array?
+	private float [] price;
 	private int groupSize;	// "capacity" in the model
 	private LocalDateTime checkIn; // might be changed later to nanoseconds instead  
 	private LocalDateTime checkOut; /* this object includes both date and time, 
