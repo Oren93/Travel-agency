@@ -20,6 +20,7 @@ public void tearDown() {
 	sController = null;
 	LocalDateTime checkIn = null;
 	LocalDateTime checkOut = null;
+	Parameters validPara = null;
 }
 
 @Test
