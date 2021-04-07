@@ -1,8 +1,15 @@
 package application;
 import java.time.LocalDateTime;
 
+
 public class Parameters { // public keyword is temporary, will change to abstract (don't think it needs to be abstract, since there are no abstract methods)
 	private final int MAXGROUP = 20;
+	// airports codes to be used
+	protected final int RVK = 1;
+	protected final int Ak = 2;
+	protected final int ISAF = 3;
+	protected final int EGIL = 4;
+	
 	protected enum LEVEL {
 		HANDICAP,
 		EASY,
@@ -10,8 +17,10 @@ public class Parameters { // public keyword is temporary, will change to abstrac
 		HARD
 	}; // I am not sure I like this enum thing, perhaps better to use constants instead
 	private LEVEL difficulty;
-	private float [] price;
+	private float [] price; //why array?
 	private int groupSize;	// "capacity" in the model
+	private int location;
+	private int destination;
 	private LocalDateTime checkIn; // might be changed later to nanoseconds instead  
 	private LocalDateTime checkOut; /* this object includes both date and time, 
 	 								    it makes sense for the objects shown to the user
@@ -25,9 +34,11 @@ public class Parameters { // public keyword is temporary, will change to abstrac
 	 * @param priceRange array size 2 of min to max price the customer willing to pay 
 	 * @param groupS amount of members in the group
 	 * @param dateRange array size 2 of starting date and end date
+	 * @param from airport of departure
+	 * @param destination of the trip
 	 */
 	protected Parameters (int dif, float [] priceRange,
-			int groupS, LocalDateTime [] dateRange)
+			int groupS, LocalDateTime [] dateRange, int from, int destination)
 	{
 		setDifficulty(dif);
 		setPrice(priceRange);
@@ -38,6 +49,8 @@ public class Parameters { // public keyword is temporary, will change to abstrac
 			setCheckIn(dateRange[0]);
 			setCheckOut(dateRange[1]);
 		}
+		setDestination(destination);
+		setLocation(from);
 	}
 	
 	/**
@@ -122,6 +135,34 @@ public class Parameters { // public keyword is temporary, will change to abstrac
 	}
 	protected LocalDateTime getcheckOut () {
 		return checkOut;
+	}
+
+	/**
+	 * @return the location
+	 */
+	public int getLocation() {
+		return location;
+	}
+
+	/**
+	 * @param location the location to set
+	 */
+	public void setLocation(int location) {
+		this.location = location;
+	}
+
+	/**
+	 * @return the destination
+	 */
+	public int getDestination() {
+		return destination;
+	}
+
+	/**
+	 * @param destination the destination to set
+	 */
+	public void setDestination(int destination) {
+		this.destination = destination;
 	}
 
 }
