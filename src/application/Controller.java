@@ -12,7 +12,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.cell.CheckBoxListCell;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 
@@ -21,6 +24,11 @@ import javafx.scene.control.ComboBox;
  *
  */
 public class Controller implements Initializable {
+	// Variables
+	boolean handicappedAssistanceRequired = false;
+	
+	
+	
 	@FXML
 	private Label lbl;
 	private long no1 = 0;
@@ -45,6 +53,7 @@ public class Controller implements Initializable {
 	}
 
 	@FXML
+	public CheckBox handicapCheckbox;
 	public ChoiceBox<String> choiceBox;
 	ObservableList<String> list = FXCollections.observableArrayList("Easy","Moderate","Hard");
 	public ChoiceBox<String> choiceDeparture;
@@ -55,6 +64,8 @@ public class Controller implements Initializable {
 			"South-west","North","East fjords","west fjords");
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		handicapCheckbox = new CheckBox();
+		
 		choiceBox.setItems(list);	
 		choiceBox.setOnAction((event) -> {
 		    int selectedIndex = choiceBox.getSelectionModel().getSelectedIndex();
@@ -81,4 +92,10 @@ public class Controller implements Initializable {
 		});
 	}
 	
+	public void checkBoxToggle () {
+		handicappedAssistanceRequired = !handicappedAssistanceRequired;
+		System.out.println("jæja ding dong: "+ handicappedAssistanceRequired);
+		
+	}
+
 }
