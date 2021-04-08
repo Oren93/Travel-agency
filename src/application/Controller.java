@@ -47,6 +47,12 @@ public class Controller implements Initializable {
 	@FXML
 	public ChoiceBox<String> choiceBox;
 	ObservableList<String> list = FXCollections.observableArrayList("Easy","Moderate","Hard");
+	public ChoiceBox<String> choiceDeparture;
+	ObservableList<String> airporList = FXCollections.observableArrayList(
+			"Reykjavík","Akureyri","Egilstaðir","Ísafjörður");
+	public ChoiceBox<String> choiceDestination;
+	ObservableList<String> travelDestination = FXCollections.observableArrayList(
+			"South-west","North","East fjords","west fjords");
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		choiceBox.setItems(list);	
@@ -56,6 +62,22 @@ public class Controller implements Initializable {
 
 		    System.out.println("Selection made: [" + selectedIndex + "] " + selectedItem);
 		    System.out.println("   ChoiceBox.getValue(): " + choiceBox.getValue());
+		});
+		choiceDeparture.setItems(airporList);	
+		choiceDeparture.setOnAction((event) -> {
+		    int selectedIndex = choiceDeparture.getSelectionModel().getSelectedIndex();
+		    Object selectedItem = choiceDeparture.getSelectionModel().getSelectedItem();
+
+		    System.out.println("Selection made: [" + selectedIndex + "] " + selectedItem);
+		    System.out.println("   ChoiceBox.getValue(): " + choiceDeparture.getValue());
+		});
+		choiceDestination.setItems(travelDestination);	
+		choiceDestination.setOnAction((event) -> {
+		    int selectedIndex = choiceDestination.getSelectionModel().getSelectedIndex();
+		    Object selectedItem = choiceDestination.getSelectionModel().getSelectedItem();
+
+		    System.out.println("Selection made: [" + selectedIndex + "] " + selectedItem);
+		    System.out.println("   ChoiceBox.getValue(): " + choiceDestination.getValue());
 		});
 	}
 	

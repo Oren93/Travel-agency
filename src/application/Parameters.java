@@ -1,44 +1,40 @@
 package application;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 
-public class Parameters { // public keyword is temporary, will change to abstract (don't think it needs to be abstract, since there are no abstract methods)
+public class Parameters {
 	private final int MAXGROUP = 20;
-	// airports codes to be used
-	protected final int RVK = 1;
-	protected final int Ak = 2;
-	protected final int ISAF = 3;
-	protected final int EGIL = 4;
+	// airports codes to be used, more location codes should be added if needed	
+	final int RVK = 1;
+	final int Ak = 2;
+	final int ISAF = 3;
+	final int EGIL = 4;
+	// Difficulty level
+	final int HANDICAP = 10;
+	final int EASY = 11;
+	final int MODERATE = 12;
+	final int HARD = 13;
+
+	private int difficulty;
+	private int [] price; // price range [minPrice, maxPrice]
+	private int groupSize;	// "capacity" in the model, number of travellers
+	private int location;	// Should find a better name, take off location
+	private int destination;// the destination is where the trip will be
 	
-	protected enum LEVEL {
-		HANDICAP,
-		EASY,
-		MODERATE,
-		HARD
-	}; // I am not sure I like this enum thing, perhaps better to use constants instead
-	private LEVEL difficulty;
-	private float [] price; //why array?
-	private int groupSize;	// "capacity" in the model
-	private int location;
-	private int destination;
-	private LocalDateTime checkIn; // might be changed later to nanoseconds instead  
-	private LocalDateTime checkOut; /* this object includes both date and time, 
-	 								    it makes sense for the objects shown to the user
-	 								    but not for the search bar, the search needs to
-	 								    read date only from the user and it is converted 
-	 								    to date and time to be handled here*/
+	private LocalDate checkIn;  
+	private LocalDate checkOut; 
 
 	/**
 	 * Constructor for an object type Parameter
-	 * @param dif the difficulty level, integer 1-3, and 0 is handicap accessible
+	 * @param dif the difficulty level, integer 11-13, and 10 is handicap accessible
 	 * @param priceRange array size 2 of min to max price the customer willing to pay 
 	 * @param groupS amount of members in the group
 	 * @param dateRange array size 2 of starting date and end date
 	 * @param from airport of departure
 	 * @param destination of the trip
 	 */
-	protected Parameters (int dif, float [] priceRange,
-			int groupS, LocalDateTime [] dateRange, int from, int destination)
+	Parameters (int dif, int [] priceRange,
+			int groupS, LocalDate [] dateRange, int from, int to)
 	{
 		setDifficulty(dif);
 		setPrice(priceRange);
@@ -49,58 +45,46 @@ public class Parameters { // public keyword is temporary, will change to abstrac
 			setCheckIn(dateRange[0]);
 			setCheckOut(dateRange[1]);
 		}
-		setDestination(destination);
-		setLocation(from);
+		destination = to;
+		location = from;
 	}
 	
 	/**
 	 * empty constructor for Parameter object
 	 */
-	protected Parameters () {
-		 price = new float [2];
+	Parameters () {
+		 price = new int [2];
 	}
 	
-	protected void setPrice(float [] p) {
+	private void setPrice(int [] p) {
 		if (p[0]>0 && p[1]>p[0])
 			price = p;
 		else printError("Price error");
 	}
-	protected void setPrice (float priceMin, float priceMax) {
-		price[0] = priceMin;
-		price[1] = priceMax;
- 	}
 	
-	protected void setDifficulty(int dif) {
-		switch (dif) {
-		case 0: difficulty = LEVEL.HANDICAP;
-		break;
-		case 1: difficulty = LEVEL.EASY;
-		break;
-		case 2: difficulty = LEVEL.MODERATE;
-		break;
-		case 3: difficulty = LEVEL.HARD;
-		break;
-		default:
+	private void setDifficulty(int dif) {
+		if (dif < 10 || dif > 13)
 			printError("setDifficulty number code out of range");
-		}
+		else difficulty = dif;
+		
 	}
 	
-	protected void setGroupSize(int gs) {
+	private void setGroupSize(int gs) {
 		if (gs < 1 || gs > MAXGROUP)
 			printError ("group size not valid");
 		else
 		groupSize = gs;
 	}
 	
-	protected void setCheckIn(LocalDateTime in) {
-		LocalDateTime today = LocalDateTime.now();
+	private void setCheckIn(LocalDate in) {
+		LocalDate today = LocalDate.now();
 		if (today.isBefore(checkIn))
 			checkIn = in;
 		else
 			printError ("bokking date must be in the future");
 	}
 	
-	protected void setCheckOut(LocalDateTime out) {
+	private void setCheckOut(LocalDate out) {
 		if (checkIn!=null && out.isAfter(checkIn))
 			checkOut = out;
 		else printError ("check in must be before checkout");
@@ -116,24 +100,23 @@ public class Parameters { // public keyword is temporary, will change to abstrac
 	}
 	
 	// get methods
-	protected LEVEL getdifficulty () {
+	int getdifficulty () {
 		return difficulty;
-		// TODO check if enum are stored as 0-3
 	}
-	protected float getLowerPrice () {
+	int getLowerPrice () {
 		return price[0];
 	}
-	protected float getHigherPrice () {
+	int getHigherPrice () {
 		return price[1];
 	}
-	protected int getgroupSize () {
+	int getgroupSize () {
 		return groupSize;
 		
 	}
-	protected LocalDateTime getcheckIn () {
+	LocalDate getcheckIn () {
 		return checkIn;
 	}
-	protected LocalDateTime getcheckOut () {
+	LocalDate getcheckOut () {
 		return checkOut;
 	}
 
@@ -145,24 +128,10 @@ public class Parameters { // public keyword is temporary, will change to abstrac
 	}
 
 	/**
-	 * @param location the location to set
-	 */
-	public void setLocation(int location) {
-		this.location = location;
-	}
-
-	/**
 	 * @return the destination
 	 */
 	public int getDestination() {
 		return destination;
-	}
-
-	/**
-	 * @param destination the destination to set
-	 */
-	public void setDestination(int destination) {
-		this.destination = destination;
 	}
 
 }
