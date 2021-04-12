@@ -4,12 +4,13 @@ import java.time.LocalDate;
 
 public class Parameters {
 	private final int MAXGROUP = 20;
-	// airports codes to be used, more location codes should be added if needed	
+	// airports codes to be used, more departLocation codes should be added if needed	
 	final int RVK = 1;
 	final int Ak = 2;
 	final int ISAF = 3;
 	final int EGIL = 4;
 	// Difficulty level
+	
 	final int HANDICAP = 10;
 	final int EASY = 11;
 	final int MODERATE = 12;
@@ -18,7 +19,7 @@ public class Parameters {
 	private int difficulty;
 	private int [] price; // price range [minPrice, maxPrice]
 	private int groupSize;	// "capacity" in the model, number of travellers
-	private int location;	// Should find a better name, take off location
+	private int departLocation;	// Should find a better name, take off departLocation
 	private int destination;// the destination is where the trip will be
 	
 	private LocalDate checkIn;  
@@ -46,7 +47,7 @@ public class Parameters {
 			setCheckOut(dateRange[1]);
 		}
 		destination = to;
-		location = from;
+		departLocation = from;
 	}
 	
 	/**
@@ -121,12 +122,11 @@ public class Parameters {
 	}
 
 	/**
-	 * @return the location
+	 * @return the departLocation
 	 */
-	public int getLocation() {
-		return location;
+	public int getdepartLocation() {
+		return departLocation;
 	}
-
 	/**
 	 * @return the destination
 	 */

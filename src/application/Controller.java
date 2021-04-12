@@ -96,6 +96,6 @@ public class Controller implements Initializable {
 		handicappedAssistanceRequired = !handicappedAssistanceRequired;
 		System.out.println("jæja ding dong: "+ handicappedAssistanceRequired);
 		
-	}
+	}	
 
 }
