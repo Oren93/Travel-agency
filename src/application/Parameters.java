@@ -5,16 +5,16 @@ import java.time.LocalDate;
 public class Parameters {
 	private final int MAXGROUP = 20;
 	// airports codes to be used, more departLocation codes should be added if needed	
-	final int RVK = 1;
-	final int Ak = 2;
-	final int ISAF = 3;
-	final int EGIL = 4;
+	public final int RVK = 1;
+	public final int Ak = 2;
+	public final int ISAF = 3;
+	public final int EGIL = 4;
 	// Difficulty level
 	
-	final int HANDICAP = 10;
-	final int EASY = 11;
-	final int MODERATE = 12;
-	final int HARD = 13;
+	public final int HANDICAP = 10;
+	public final int EASY = 11;
+	public final int MODERATE = 12;
+	public final int HARD = 13;
 
 	private int difficulty;
 	private int [] price; // price range [minPrice, maxPrice]
@@ -101,23 +101,23 @@ public class Parameters {
 	}
 	
 	// get methods
-	int getdifficulty () {
+	public int getdifficulty () {
 		return difficulty;
 	}
 	int getLowerPrice () {
 		return price[0];
 	}
-	int getHigherPrice () {
+	public int getMaxPrice () {
 		return price[1];
 	}
-	int getgroupSize () {
+	public int getgroupSize () {
 		return groupSize;
 		
 	}
-	LocalDate getcheckIn () {
+	public LocalDate getcheckIn () {
 		return checkIn;
 	}
-	LocalDate getcheckOut () {
+	public LocalDate getcheckOut () {
 		return checkOut;
 	}
 

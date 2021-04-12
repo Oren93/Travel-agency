@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
@@ -30,6 +31,8 @@ public class Controller implements Initializable {
 	
 	
 	@FXML
+	private VBox SearchPage;
+	private VBox ConfirmationPage;
 	private Label lbl;
 	private long no1 = 0;
 	private String op = "";
