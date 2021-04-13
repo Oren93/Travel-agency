@@ -3,7 +3,7 @@ import java.time.LocalDate;
 
 
 public class Parameters {
-	private final int MAXGROUP = 20;
+	final static int MAXGROUP = 20;
 	// airports codes to be used, more departLocation codes should be added if needed	
 	public final int RVK = 1;
 	public final int Ak = 2;
@@ -12,7 +12,7 @@ public class Parameters {
 	// Difficulty level
 	
 	public final int HANDICAP = 10;
-	public final int EASY = 11;
+	final public static int EASY = 11;
 	public final int MODERATE = 12;
 	public final int HARD = 13;
 

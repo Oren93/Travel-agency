@@ -4,6 +4,7 @@
 package application;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -12,13 +13,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 
 /**
  * @author Oren1
@@ -26,7 +31,12 @@ import javafx.scene.control.ComboBox;
  */
 public class Controller implements Initializable {
 	// Variables
-	boolean handicappedAssistanceRequired = false;
+	final private int MIN_PRICE = 1000;
+	final private int MAX_PRICE = 1000000;
+	final private int GROUOP_SIZE = Parameters.MAXGROUP;
+	
+	private boolean handicappedAssistanceRequired = false;
+	private int difficultyLevel;
 	
 	
 	
@@ -37,9 +47,38 @@ public class Controller implements Initializable {
 	private long no1 = 0;
 	private String op = "";
 	private boolean start = true;
+	@FXML
+	private DatePicker fromDate, toDate;
 
 	@FXML
-	public void proccessData(ActionEvent e) {
+	public void proccessInput(ActionEvent e) {
+		int priceRange [] = new int[2];
+		LocalDate dateRange [] = new LocalDate[2];
+		SpinnerValueFactory <Integer> sf; 
+		try {
+			sf = priceMin.getValueFactory();
+			priceRange[0] = sf.getValue();
+			sf = priceMax.getValueFactory();
+			priceRange[1] = sf.getValue();
+
+			dateRange[0] = fromDate.getValue();
+			dateRange[1] = toDate.getValue();
+			// Tester: -----------------------------------------------------
+			System.out.println(dateRange[0].getDayOfMonth()+"/"+dateRange[0].getMonthValue());
+			System.out.println(dateRange[1].getDayOfMonth()+"/"+dateRange[1].getMonthValue());
+			
+			int selectedAirportDeparture = choiceDeparture.getSelectionModel().getSelectedIndex()+1;
+		    System.out.println("shushi "+selectedAirportDeparture);
+			
+		} catch (Error e1) {
+						
+		}
+		// These following to lines are temporary. ConfirmPage should appear either 
+		// after the search result yields results or after selecting a package 
+		boolean visibile = ConfirmPage.isVisible();
+		ConfirmPage.setVisible(!visibile);
+		ConfirmPage.setPrefHeight(visibile? 270 : 0); // NOT WORKING AS PLANNED
+		
 	}
 	
 	public void proccess(ActionEvent e) {
@@ -56,8 +95,12 @@ public class Controller implements Initializable {
 	}
 
 	@FXML
+	//private Button SearchBtn;
+	private Pane ConfirmPage;
+	private VBox MainScene;
 	public CheckBox handicapCheckbox;
-	public ChoiceBox<String> choiceBox;
+	@FXML
+	public ChoiceBox<String> difficultyChoose;
 	ObservableList<String> list = FXCollections.observableArrayList("Easy","Moderate","Hard");
 	public ChoiceBox<String> choiceDeparture;
 	ObservableList<String> airporList = FXCollections.observableArrayList(
@@ -65,17 +108,38 @@ public class Controller implements Initializable {
 	public ChoiceBox<String> choiceDestination;
 	ObservableList<String> travelDestination = FXCollections.observableArrayList(
 			"South-west","North","East fjords","west fjords");
+	@FXML
+	private Spinner <Integer> priceMin, priceMax, GroupSize;
+	//@FXML 
+	//private Spinner ;
+	//@FXML
+	//private Spinner <Integer> ;
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		handicapCheckbox = new CheckBox();
-		
-		choiceBox.setItems(list);	
-		choiceBox.setOnAction((event) -> {
-		    int selectedIndex = choiceBox.getSelectionModel().getSelectedIndex();
-		    Object selectedItem = choiceBox.getSelectionModel().getSelectedItem();
+		//priceMin = new Spinner<Integer>();
+		//priceMax = new Spinner<Integer>();
 
-		    System.out.println("Selection made: [" + selectedIndex + "] " + selectedItem);
-		    System.out.println("   ChoiceBox.getValue(): " + choiceBox.getValue());
+        SpinnerValueFactory<Integer> valueFactory1 =
+                new SpinnerValueFactory.IntegerSpinnerValueFactory(MIN_PRICE, MAX_PRICE, MIN_PRICE,1000);
+        SpinnerValueFactory<Integer> valueFactory2 =
+                new SpinnerValueFactory.IntegerSpinnerValueFactory(MIN_PRICE, MAX_PRICE, MAX_PRICE,1000);
+        SpinnerValueFactory<Integer> valueFactory3 =
+                new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, 1);
+        priceMin.setValueFactory(valueFactory1);
+        priceMax.setValueFactory(valueFactory2);
+        GroupSize.setValueFactory(valueFactory3);
+        //priceMin.setEditable(true); 
+        
+ 		ConfirmPage.setVisible(false);
+ 		ConfirmPage.setPrefHeight(0);
+		
+		
+ 		difficultyChoose.setItems(list);	
+		// Set Listener for the choiceBoxes
+ 		difficultyChoose.setOnAction((event) -> {
+		    int selectedIndex = difficultyChoose.getSelectionModel().getSelectedIndex();
+		    difficultyLevel = selectedIndex+Parameters.EASY;
 		});
 		choiceDeparture.setItems(airporList);	
 		choiceDeparture.setOnAction((event) -> {
@@ -97,8 +161,12 @@ public class Controller implements Initializable {
 	
 	public void checkBoxToggle () {
 		handicappedAssistanceRequired = !handicappedAssistanceRequired;
-		System.out.println("jæja ding dong: "+ handicappedAssistanceRequired);
+		difficultyChoose.setDisable(handicappedAssistanceRequired);
+		System.out.println("handicap = "+ handicappedAssistanceRequired);
+		difficultyLevel = (-1) * difficultyLevel; // 0 and below is disabled
+		System.out.println(difficultyLevel); // recover previous value when unmark the box
+			
 		
 	}	
-
+	
 }
