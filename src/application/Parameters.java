@@ -11,8 +11,8 @@ public class Parameters {
 	public final int EGIL = 4;
 	// Difficulty level
 	
-	public final int HANDICAP = 10;
-	final public static int EASY = 11;
+	public final static int HANDICAP = 10;
+	public final static int EASY = 11;
 	public final int MODERATE = 12;
 	public final int HARD = 13;
 
@@ -46,8 +46,7 @@ public class Parameters {
 			setCheckIn(dateRange[0]);
 			setCheckOut(dateRange[1]);
 		}
-		destination = to;
-		departLocation = from;
+		setLocations(to, from);
 	}
 	
 	/**
@@ -79,7 +78,7 @@ public class Parameters {
 	
 	private void setCheckIn(LocalDate in) {
 		LocalDate today = LocalDate.now();
-		if (today.isBefore(checkIn))
+		if (today.isBefore(in))
 			checkIn = in;
 		else
 			printError ("bokking date must be in the future");
@@ -89,6 +88,14 @@ public class Parameters {
 		if (checkIn!=null && out.isAfter(checkIn))
 			checkOut = out;
 		else printError ("check in must be before checkout");
+	}
+	private void setLocations(int from, int to) {
+		if (from == to)
+			printError("departure and destination must be different locations");
+		else {
+			destination = to;
+			departLocation = from;
+		}
 	}
 	/**
 	 * A temporary implementation of error handler, should later on pop an error message
@@ -132,6 +139,41 @@ public class Parameters {
 	 */
 	public int getDestination() {
 		return destination;
+	}
+	
+	public String toString() {		
+		String tostring =
+				"Travel dates from "+checkIn.getDayOfMonth()+"/"+checkIn.getMonthValue()+
+				"/"+checkIn.getYear()+ " ariport "+ extractCode(departLocation) + "\n"+
+				"To "+checkOut.getDayOfMonth()+"/"+checkOut.getMonthValue()+
+				"/"+checkOut.getYear()+ " ariport "+ extractCode(destination) + "\n"+
+				"Price range is between "+ price[0] +" to "+price[1]+"\n"+
+				"Difficulty level is "+extractCode(difficulty)+"\n"+
+				"Group size is "+groupSize;
+		return tostring;
+	}
+	private String extractCode(int s) {
+		switch(s) {
+		  case 1:
+			    return "Reykjavík";
+		  case 2:
+			    return "Akureyri";
+		  case 3:
+			    return "Ísafjörður";
+		  case 4:
+			    return "Egilstaðir";
+		  case 10:
+			    return "Handicaped accessibility";
+		  case 11:
+			    return "easy";
+		  case 12:
+			    return "moderate";
+		  case 13:
+			    return "hard";
+		  default:
+			  return "Wrong value";
+		}
+		
 	}
 
 }

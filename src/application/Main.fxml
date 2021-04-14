@@ -238,7 +238,7 @@
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </padding>
                                        <children>
-                                          <CheckBox mnemonicParsing="false" onAction="#checkBoxToggle" text="Wannt pay extra money for useless services?">
+                                          <CheckBox mnemonicParsing="false" onAction="#checkBoxToggle" text="Wanna pay extra money for useless services?">
                                              <padding>
                                                 <Insets top="3.0" />
                                              </padding>

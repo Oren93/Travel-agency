@@ -53,23 +53,27 @@ public class Controller implements Initializable {
 	@FXML
 	public void proccessInput(ActionEvent e) {
 		int priceRange [] = new int[2];
+		int groupS;
 		LocalDate dateRange [] = new LocalDate[2];
 		SpinnerValueFactory <Integer> sf; 
 		try {
-			sf = priceMin.getValueFactory();
-			priceRange[0] = sf.getValue();
-			sf = priceMax.getValueFactory();
-			priceRange[1] = sf.getValue();
+			priceRange[0] = priceMin.getValueFactory().getValue();
+			priceRange[1] = priceMax.getValueFactory().getValue();
+			groupS = GroupSize.getValueFactory().getValue();
 
 			dateRange[0] = fromDate.getValue();
 			dateRange[1] = toDate.getValue();
 			// Tester: -----------------------------------------------------
 			System.out.println(dateRange[0].getDayOfMonth()+"/"+dateRange[0].getMonthValue());
 			System.out.println(dateRange[1].getDayOfMonth()+"/"+dateRange[1].getMonthValue());
-			
+
 			int selectedAirportDeparture = choiceDeparture.getSelectionModel().getSelectedIndex()+1;
-		    System.out.println("shushi "+selectedAirportDeparture);
-			
+			int selectedAirportDestination = choiceDestination.getSelectionModel().getSelectedIndex()+1;
+			if (difficultyLevel < Parameters.EASY)
+				difficultyLevel = Parameters.HANDICAP;
+			Parameters searchParam = new Parameters (difficultyLevel,
+					priceRange, groupS, dateRange,selectedAirportDeparture, selectedAirportDestination);
+			System.out.println(searchParam.toString());
 		} catch (Error e1) {
 						
 		}
