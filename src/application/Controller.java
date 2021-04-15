@@ -51,6 +51,11 @@ public class Controller implements Initializable {
 	private DatePicker fromDate, toDate;
 
 	@FXML
+	/**
+	 * Fetch the data from the user when clicking "search" and construct a parameter 
+	 * object with this data if that is possible
+	 * @param e actionEvent
+	 */
 	public void proccessInput(ActionEvent e) {
 		int priceRange [] = new int[2];
 		int groupS;
@@ -73,9 +78,10 @@ public class Controller implements Initializable {
 				difficultyLevel = Parameters.HANDICAP;
 			Parameters searchParam = new Parameters (difficultyLevel,
 					priceRange, groupS, dateRange,selectedAirportDeparture, selectedAirportDestination);
-			System.out.println(searchParam.toString());
+			System.out.println(searchParam.toString()); // temporary, for testing purposes
+			/* HERE need to call a search mehtod with the Parameters object searchParam */
 		} catch (Error e1) {
-						
+			/* Need to pop up a window to indicate what is the error */		
 		}
 		// These following to lines are temporary. ConfirmPage should appear either 
 		// after the search result yields results or after selecting a package 
@@ -85,17 +91,15 @@ public class Controller implements Initializable {
 		
 	}
 	
+	// This will process packages selection or confirmation
 	public void proccess(ActionEvent e) {
 		
 	}
 
+	// Can't remember why this is here, probably will be deleted
 	@FXML
 	private double calculate() {
 		return 0;
-	}
-
-	protected static Parameters[] search(Parameters p) {
-		return null;
 	}
 
 	@FXML
@@ -146,6 +150,7 @@ public class Controller implements Initializable {
 		    difficultyLevel = selectedIndex+Parameters.EASY;
 		});
 		choiceDeparture.setItems(airporList);	
+		// This listener is useless
 		choiceDeparture.setOnAction((event) -> {
 		    int selectedIndex = choiceDeparture.getSelectionModel().getSelectedIndex();
 		    Object selectedItem = choiceDeparture.getSelectionModel().getSelectedItem();
@@ -154,6 +159,7 @@ public class Controller implements Initializable {
 		    System.out.println("   ChoiceBox.getValue(): " + choiceDeparture.getValue());
 		});
 		choiceDestination.setItems(travelDestination);	
+		// this listener is also useless
 		choiceDestination.setOnAction((event) -> {
 		    int selectedIndex = choiceDestination.getSelectionModel().getSelectedIndex();
 		    Object selectedItem = choiceDestination.getSelectionModel().getSelectedItem();
@@ -163,7 +169,15 @@ public class Controller implements Initializable {
 		});
 	}
 	
-	public void checkBoxToggle () {
+	/*
+	 * Toggles the boolean variable handicappedAssistanceRequired on/off
+	 * and disables the difficulty ChoiceBox, when disabling it gives the
+	 * difficulty value a negative value and when enabling it return the 
+	 * positive value as before, so the variable difficultyLevel "remembers" 
+	 * it's value before disabling the ChoiceBox. That means that every value
+	 * smaller than Parameters.EASY represents handicap 
+	 */
+	private void checkBoxToggle () {
 		handicappedAssistanceRequired = !handicappedAssistanceRequired;
 		difficultyChoose.setDisable(handicappedAssistanceRequired);
 		System.out.println("handicap = "+ handicappedAssistanceRequired);
