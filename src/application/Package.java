@@ -1,5 +1,5 @@
 package application;
-import 3T.Tour; //need to talk to the others to get their classes
+import 3D.Tour; //need to talk to the others to get their classes
 import 3H.Room;
 import 3F.Flight;
 
