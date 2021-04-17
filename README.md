@@ -1,3 +1,3 @@
-This is the basis of JavaFX HelloWorld program.
+Incomplete repo
 
-Later will be modified to a travel agency program as a school project
+This JavaFX programm will be a travel agency program for a school project
