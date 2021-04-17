@@ -1,20 +1,43 @@
+<<<<<<< Updated upstream
 !SESSION 2021-04-17 19:34:45.850 -----------------------------------------------
+=======
+
+!ENTRY org.eclipse.ui.ide 4 4 2021-04-17 19:02:55.573
+!MESSAGE Problems saving workspace
+
+!ENTRY org.eclipse.ui.ide 4 1 2021-04-17 19:02:55.578
+!MESSAGE Problems occurred while trying to save the state of the workbench.
+!SUBENTRY 1 org.eclipse.core.resources 4 568 2021-04-17 19:02:55.578
+!MESSAGE Could not write workspace metadata 'C:/Hugbúnaðarverkfræði/Ár 2/Travel website/Travel-agency/.metadata/.plugins/org.eclipse.core.resources/.root/1.tree'.
+!STACK 0
+java.io.FileNotFoundException: C:\Hugbúnaðarverkfræði\Ár 2\Travel website\Travel-agency\.metadata\.plugins\org.eclipse.core.resources\.root\1.tree (The system cannot find the path specified)
+	at java.base/java.io.FileOutputStream.open0(Native Method)
+	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:292)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:235)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:185)
+	at org.eclipse.core.internal.localstore.SafeFileOutputStream.<init>(SafeFileOutputStream.java:55)
+	at org.eclipse.core.internal.resources.SaveManager.saveTree(SaveManager.java:1381)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1168)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2333)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor.lambda$1(IDEWorkbenchAdvisor.java:542)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:122)
+!SESSION 2021-04-17 19:14:19.997 -----------------------------------------------
 eclipse.buildId=4.19.0.I20210303-1800
 java.version=13.0.2
 java.vendor=Oracle Corporation
 BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
-Framework arguments:  -product org.eclipse.epp.package.java.product
-Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+Framework arguments:  -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -data C:\Hugbúnaðarverkfræði\Ár 2\Travel website\Travel-agency -product org.eclipse.epp.package.java.product
 
-!ENTRY org.eclipse.jface 2 0 2021-04-17 19:35:10.793
+!ENTRY org.eclipse.jface 2 0 2021-04-17 19:14:31.297
 !MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
-!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-17 19:35:10.793
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-17 19:14:31.297
 !MESSAGE A conflict occurred for CTRL+SHIFT+T:
 Binding(CTRL+SHIFT+T,
 	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
 		Open a type in a Java editor,
 		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
-		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@5e1a7d3,
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@575d48db,
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.ui.contexts.window,,,system)
@@ -22,12 +45,66 @@ Binding(CTRL+SHIFT+T,
 	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
 		,
 		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
-		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@1eda309d,
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@1b36d248,
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.ui.contexts.window,,,system)
 
+!ENTRY org.eclipse.egit.ui 2 0 2021-04-17 19:15:01.032
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\safaj'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+!SESSION 2021-04-17 19:23:02.732 -----------------------------------------------
+>>>>>>> Stashed changes
+eclipse.buildId=4.19.0.I20210303-1800
+java.version=13.0.2
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+<<<<<<< Updated upstream
+!ENTRY org.eclipse.jface 2 0 2021-04-17 19:35:10.793
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-17 19:35:10.793
+=======
+!ENTRY org.eclipse.jface 2 0 2021-04-17 19:24:35.609
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-17 19:24:35.609
+>>>>>>> Stashed changes
+!MESSAGE A conflict occurred for CTRL+SHIFT+T:
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+<<<<<<< Updated upstream
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@5e1a7d3,
+=======
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@60ee7a51,
+>>>>>>> Stashed changes
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+<<<<<<< Updated upstream
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@1eda309d,
+=======
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@70e1aa20,
+>>>>>>> Stashed changes
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+<<<<<<< Updated upstream
 !ENTRY org.eclipse.egit.ui 2 0 2021-04-17 19:35:36.571
+=======
+!ENTRY org.eclipse.egit.ui 2 0 2021-04-17 19:24:53.495
+>>>>>>> Stashed changes
 !MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
 user global configuration and to define the default location to store repositories: 'C:\Users\safaj'. If this is
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
