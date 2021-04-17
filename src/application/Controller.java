@@ -177,6 +177,7 @@ public class Controller implements Initializable {
 	 * it's value before disabling the ChoiceBox. That means that every value
 	 * smaller than Parameters.EASY represents handicap 
 	 */
+	@FXML
 	private void checkBoxToggle () {
 		handicappedAssistanceRequired = !handicappedAssistanceRequired;
 		difficultyChoose.setDisable(handicappedAssistanceRequired);
