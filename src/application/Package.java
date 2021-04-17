@@ -8,7 +8,7 @@ class Package {
     Tour [] tours;
     Flight [] flights;
     Room [] rooms;
-    float price;
+    double price;
 
     /**
 	 * Constructor for an object type Package
@@ -29,8 +29,8 @@ class Package {
     }
 
     // set methods
-    private void setPackageID(packID) {
-        // add here if statement to check format
+    private void setPackageID() {
+        // add here math.Random to create package ID according to format
         packageID = packID;
     }
 
@@ -39,7 +39,10 @@ class Package {
     }
 
     private void setFlights(fli) {
-        flights = fli;
+        if(fli.length == 2) {
+            flights = fli;
+        }
+        else  printError("there should be only 2 flights");
     }
 
     private void setRooms(rs) {
@@ -70,4 +73,14 @@ class Package {
     float getPrice() {
         return price;
     }
+
+    /**
+	 * A temporary implementation of error handler, should later on pop an error message
+	 * @param e the error string, indicates where the error occured
+	 */
+	private void printError (String e) {
+		System.out.println("an error message popup should appear here");
+		System.out.println("Error: "+ e);
+		
+	}
 }
