@@ -8,7 +8,7 @@ import 3H.Room;
 import 3F.Flight;
 import 3F.fController;
 import 3H.hController;
-import 3H.dController;
+import 3D.dController;
 
 
 class sController {
@@ -25,8 +25,13 @@ class sController {
 	private void getFlights(Parameter parameters) {
 
 	}
-	
-	search(Parameter parameters){
+	 //Details for finding the convenient day tour. 
+	//constructor 
+    private void getTour(Parameter parameters) {
+    	 ObservableList<Tour> dTour =  dController.TourController.searchTours( parameters);
+    }
+	//method to find the flight details 
+	Flight[] searchFlight (Parameter parameters){
 	    Flight[] departureF = fController.getAvailableFlights(Parameters, true); //boolean variable true if flight is dearture to destination
 	    Flight[] returnF = fController.getAvailableFlights(Parameters, false); //will return an Observable list, not arrray, need to check that
 	    // create array that holds in the available rooms 
@@ -34,6 +39,8 @@ class sController {
 	    Room [] cheaprooms;
 	    Room cheapestRoom ;
 	    double roomPrice = Double.POSITIVE_INFINITY;
+	    
+	   
 	    
 	    int n = departureF.length;
 	    int m = returnF.length;
@@ -79,7 +86,17 @@ class sController {
 	
 	    price1 -= (departPrice + returnPrice);
 	    price2 -= (shortFLight[0].getPrice() + shortFLight[1].getPrice());
+	    //return the array of flights
+	    return searchFlight[];
+	}
+	//here we can create a separate method to return cheapest flight
+	Flight[] searchCheapestFlight (Parameter parameters){
+		
+	}
 	
+	//method to find cheapest room for each day of trip 
+	Room[] searchRoom (Parameter parameters){
+		
 	    for(long i=0; i<voyageLength; i++) {
 	        //create cheapestRoom array of length voyageLength, fill it with cheapest room for each night
 	    	//voyageLength =  total length of trip= number of days 
@@ -92,5 +109,11 @@ class sController {
 	    	price2 -= cheapestRoom.getbasePrice();
 	    	
 	    }
+	    return cheapestRoom[];
 	}
+	//method to find convinient tours for each day 
+	Tour[] searchDayTour (Parameter parameters){
+		
+	}
+	
 }
