@@ -1,6 +1,9 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 !SESSION 2021-04-17 19:34:45.850 -----------------------------------------------
 =======
+=======
+>>>>>>> Stashed changes
 
 !ENTRY org.eclipse.ui.ide 4 4 2021-04-17 19:02:55.573
 !MESSAGE Problems saving workspace
@@ -57,6 +60,9 @@ not correct please set the HOME environment variable and restart Eclipse. Otherw
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
 !SESSION 2021-04-17 19:23:02.732 -----------------------------------------------
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 eclipse.buildId=4.19.0.I20210303-1800
 java.version=13.0.2
@@ -66,9 +72,15 @@ Framework arguments:  -product org.eclipse.epp.package.java.product
 Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 !ENTRY org.eclipse.jface 2 0 2021-04-17 19:35:10.793
 !MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
 !SUBENTRY 1 org.eclipse.jface 2 0 2021-04-17 19:35:10.793
+=======
+!ENTRY org.eclipse.jface 2 0 2021-04-17 19:24:35.609
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-17 19:24:35.609
+>>>>>>> Stashed changes
 =======
 !ENTRY org.eclipse.jface 2 0 2021-04-17 19:24:35.609
 !MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
@@ -80,7 +92,11 @@ Binding(CTRL+SHIFT+T,
 		Open a type in a Java editor,
 		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@5e1a7d3,
+=======
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@60ee7a51,
+>>>>>>> Stashed changes
 =======
 		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@60ee7a51,
 >>>>>>> Stashed changes
@@ -92,7 +108,11 @@ Binding(CTRL+SHIFT+T,
 		,
 		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@1eda309d,
+=======
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@70e1aa20,
+>>>>>>> Stashed changes
 =======
 		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@70e1aa20,
 >>>>>>> Stashed changes
@@ -101,7 +121,11 @@ Binding(CTRL+SHIFT+T,
 	org.eclipse.ui.contexts.window,,,system)
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 !ENTRY org.eclipse.egit.ui 2 0 2021-04-17 19:35:36.571
+=======
+!ENTRY org.eclipse.egit.ui 2 0 2021-04-17 19:24:53.495
+>>>>>>> Stashed changes
 =======
 !ENTRY org.eclipse.egit.ui 2 0 2021-04-17 19:24:53.495
 >>>>>>> Stashed changes

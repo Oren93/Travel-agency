@@ -3,6 +3,7 @@
 	<section name="ExternalProjectImportWizard">
 		<item key="WizardProjectsImportPage.STORE_NESTED_PROJECTS" value="false"/>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 		<item key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
@@ -10,12 +11,17 @@
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
 			<item value="C:\Hugbúnaðarverkfræði\Ár 2\Travel website\Travel-agenci"/>
 =======
+=======
+>>>>>>> Stashed changes
 		<item key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID" value="true"/>
 		<item key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="true"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
 			<item value="C:\Hugbúnaðarverkfræði\Ár 2\Travel website\Travel-agency"/>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
@@ -23,7 +29,10 @@
 		</list>
 	</section>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 	<section name="SmartImportWizard">
 		<item key="SmartImportRootWizardPage.STORE_HIDE_ALREADY_OPEN" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CLOSE_IMPORTED" value="true"/>
@@ -33,5 +42,8 @@
 			<item value="C:\Hugbúnaðarverkfræði\Ár 2\Travel website\Travel-agency"/>
 		</list>
 	</section>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 </section>
