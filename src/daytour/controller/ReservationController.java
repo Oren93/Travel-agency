@@ -1,4 +1,4 @@
-package Controller;
+package threed.controller;
 
 import Model.*;
 import data.*;

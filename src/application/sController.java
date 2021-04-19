@@ -3,9 +3,9 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.lang.*;
 
-import 3D.*;
+import daytour.*;
 import 3H.*;
-import 3F.*;
+import flights.*;
 
 
 class sController {
@@ -33,8 +33,8 @@ class sController {
 	
 	//method to find the flight details 
 	Flight[] searchFlight (Parameters parameters){
-	    Flight[] departureF = fController.getAvailableFlights(Parameters, true); //boolean variable true if flight is dearture to destination
-	    Flight[] returnF = fController.getAvailableFlights(Parameters, false); //will return an Observable list, not arrray, need to check that
+	    Flight[] departureF = flightC.getAvailableFlights(parameters, true); //boolean variable true if flight is dearture to destination
+	    Flight[] returnF = flightC.getAvailableFlights(parameters, false); //will return an Observable list, not arrray, need to check that
 	    // create array that holds in the available rooms 
 	    Room [] availableRoom; 
 	    Room [] cheaprooms;
