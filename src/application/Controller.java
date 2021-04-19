@@ -3,7 +3,6 @@
  */
 package application;
 
-import java.awt.TextField;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -16,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.scene.input.MouseEvent;
@@ -42,7 +42,7 @@ public class Controller implements Initializable {
 	private int difficultyLevel;
 	
 	
-
+	
 	@FXML
 	private VBox SearchPage;
 	//private VBox ConfirmationPage;
@@ -208,9 +208,19 @@ public class Controller implements Initializable {
         accordion.getPanes().add(pane3);
         
         PackagePage.getChildren().addAll(accordion);
-		
 	}
 	
-	
+
+	@FXML
+	private TextField fname, lname, kt;
+	@FXML
+	private void getDetails (ActionEvent e) {
+		String fNm, lNm, kenitala;
+		fNm = fname.getText();
+		lNm = lname.getText();
+		kenitala = kt.getText();
+		//flights.Passenger;// = new Passenger(fNm,lNm,kenitala);
+		flights.Passenger person = new flights.Passenger(kenitala,fNm,lNm);
+	}
 	
 }

@@ -19,7 +19,6 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
    <children>
       <VBox fx:id="MainBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="670.0" spacing="10.0">
@@ -298,7 +297,7 @@
                         </StackPane>
                         <Pane prefHeight="130.0" prefWidth="600.0">
                            <children>
-                              <Button fx:id="confirm" layoutX="414.0" layoutY="26.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="76.0" text="Confirm">
+                              <Button fx:id="confirm" layoutX="414.0" layoutY="26.0" mnemonicParsing="false" onAction="#getDetails" prefHeight="38.0" prefWidth="76.0" text="Confirm">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
