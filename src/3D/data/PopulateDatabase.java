@@ -62,7 +62,7 @@ public class PopulateDatabase {
      */
     private BufferedReader readFile(String fileName) throws IOException {
         String srcPath = getSrcPath();
-        fileName = srcPath + "fakeData/" + fileName;
+        fileName = srcPath + "3D/fakeData/" + fileName;
         Path path = Paths.get(fileName);
         return Files.newBufferedReader(path);
     }
