@@ -176,7 +176,4 @@ public class Parameters {
 		}
 		
 	}
-
-	String location = extractCode(application.Parameters.getDestination());
-
 }
