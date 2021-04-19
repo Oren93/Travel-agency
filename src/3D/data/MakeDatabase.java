@@ -23,7 +23,7 @@ public class MakeDatabase {
         String[] strings = getUrlAndDatabase();
         String url = strings[0];
         String dbName = strings[1];
-        String schema = getSrcPath() + "data/schema.sql";
+        String schema = getSrcPath() + "3D/data/schema.sql";
         StringBuffer command=null;
         try {
             File dbFile = new File(dbName);
