@@ -1,10 +1,10 @@
 package daytour.data;
 
-import Model.Reservation;
-import Model.Tour;
-import Model.TourDate;
+import daytour.model.Reservation;
+import daytour.model.Tour;
+import daytour.model.TourDate;
 import java.sql.*;
-import static application.Utils.*;
+import static daytour.application.Utils.*;
 
 /**
  * @author Team 3D

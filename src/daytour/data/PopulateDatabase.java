@@ -10,7 +10,7 @@ import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import static application.Utils.*;
+import static daytour.application.Utils.*;
 
 /**
  * @author Team 3D

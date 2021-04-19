@@ -1,8 +1,9 @@
 package daytour.controller;
 
-import Model.*;
-import data.*;
-import static application.Utils.*;
+import daytour.model.*;
+import daytour.data.*;
+import static daytour.application.Utils.*;
+
 
 /**
  * @author Team 3D

@@ -1,7 +1,7 @@
 package daytour.data;
 
 import java.sql.*;
-import static application.Utils.*;
+import static daytour.application.Utils.*;
 
 /**
  * @author Team 3D

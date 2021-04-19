@@ -1,10 +1,10 @@
 package daytour.controller;
 
 import java.time.LocalDate;
-import Model.Tour;
+import daytour.model.Tour;
 import javafx.collections.ObservableList;
 import application.Parameters;
-import data.TourDb;
+import daytour.data.TourDb;
 
 /**
  * @author Team 3D
