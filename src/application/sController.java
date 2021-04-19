@@ -3,39 +3,36 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.lang.*;
 
-import 3D.Tour; //need to get other team's code
-import 3H.Room;
-import 3F.Flight;
-import 3F.fController;
-import 3H.hController;
-import 3D.dController;
+import 3D.*;
+import 3H.*;
+import 3F.*;
 
 
 class sController {
 	
-	private fController;
-	private hController;
-	private dController;
+	private FlightController flightC;
+	private hController hotelC;
+	private TourController dayTourC;
 	
 	
     sController() {
-		fController = new fController();
-		hController = new hController();
-		dController = new dController();
+		flightC = new FlightController();
+		hotelC = new hController(); //need  to resolve hController name
+		dayTourC = new TourController();
     }
 
-	private void getFlights(Parameter parameters) {
+	private void getFlights(Parameters parameters) {
 
 	}
 	 //Details for finding the convenient day tour. 
 	//constructor 
-    private void getTour(Parameter parameters) {
+    private void getTour(Parameters parameters) {
     	 ObservableList<Tour> dTour =  dController.TourController.searchTours( parameters);
     }
 
 	
 	//method to find the flight details 
-	Flight[] searchFlight (Parameter parameters){
+	Flight[] searchFlight (Parameters parameters){
 	    Flight[] departureF = fController.getAvailableFlights(Parameters, true); //boolean variable true if flight is dearture to destination
 	    Flight[] returnF = fController.getAvailableFlights(Parameters, false); //will return an Observable list, not arrray, need to check that
 	    // create array that holds in the available rooms 
@@ -94,12 +91,12 @@ class sController {
 	    return searchFlight[];
 	}
 	//here we can create a separate method to return cheapest flight
-	Flight[] searchCheapestFlight (Parameter parameters){
+	Flight[] searchCheapestFlight (Parameters parameters){
 		
 	}
 	
 	//method to find cheapest room for each day of trip 
-	Room[] searchRoom (Parameter parameters){
+	Room[] searchRoom (Parameters parameters){
 		
 	    for(long i=0; i<voyageLength; i++) {
 	        //create cheapestRoom array of length voyageLength, fill it with cheapest room for each night
@@ -116,7 +113,7 @@ class sController {
 	    return cheapestRoom[];
 	}
 	//method to find convinient tours for each day 
-	Tour[] searchDayTour (Parameter parameters){
+	Tour[] searchDayTour (Parameters parameters){
 		
 	}
 	
