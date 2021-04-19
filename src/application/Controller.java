@@ -3,6 +3,7 @@
  */
 package application;
 
+import java.awt.TextField;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -15,10 +16,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.TitledPane;
 import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
@@ -39,14 +42,10 @@ public class Controller implements Initializable {
 	private int difficultyLevel;
 	
 	
-	
+
 	@FXML
 	private VBox SearchPage;
-	private VBox ConfirmationPage;
-	private Label lbl;
-	private long no1 = 0;
-	private String op = "";
-	private boolean start = true;
+	//private VBox ConfirmationPage;
 	@FXML
 	private DatePicker fromDate, toDate;
 
@@ -60,7 +59,7 @@ public class Controller implements Initializable {
 		int priceRange [] = new int[2];
 		int groupS;
 		LocalDate dateRange [] = new LocalDate[2];
-		SpinnerValueFactory <Integer> sf; 
+		//SpinnerValueFactory <Integer> sf; 
 		try {
 			priceRange[0] = priceMin.getValueFactory().getValue();
 			priceRange[1] = priceMax.getValueFactory().getValue();
@@ -83,29 +82,21 @@ public class Controller implements Initializable {
 		} catch (Error e1) {
 			/* Need to pop up a window to indicate what is the error */		
 		}
+		finally{ // To delete later!!!!!!!!!!!!!!!!!
 		// These following to lines are temporary. ConfirmPage should appear either 
 		// after the search result yields results or after selecting a package 
 		boolean visibile = ConfirmPage.isVisible();
 		ConfirmPage.setVisible(!visibile);
-		ConfirmPage.setPrefHeight(visibile? 270 : 0); // NOT WORKING AS PLANNED
+		renderView(new int [25]);
+		//ConfirmPage.setPrefHeight(visibile? 2000 : 500); // NOT WORKING AS PLANNED
 		
+		}
 	}
 	
-	// This will process packages selection or confirmation
-	public void proccess(ActionEvent e) {
-		
-	}
-
-	// Can't remember why this is here, probably will be deleted
 	@FXML
-	private double calculate() {
-		return 0;
-	}
-
-	@FXML
-	//private Button SearchBtn;
 	private Pane ConfirmPage;
-	private VBox MainScene;
+	@FXML
+	private VBox MainBox;
 	public CheckBox handicapCheckbox;
 	@FXML
 	public ChoiceBox<String> difficultyChoose;
@@ -116,6 +107,9 @@ public class Controller implements Initializable {
 	public ChoiceBox<String> choiceDestination;
 	ObservableList<String> travelDestination = FXCollections.observableArrayList(
 			"South-west","North","East fjords","west fjords");
+
+	@FXML
+	private Button confirm;
 	@FXML
 	private Spinner <Integer> priceMin, priceMax, GroupSize;
 	//@FXML 
@@ -140,7 +134,7 @@ public class Controller implements Initializable {
         //priceMin.setEditable(true); 
         
  		ConfirmPage.setVisible(false);
- 		ConfirmPage.setPrefHeight(0);
+ 		//ConfirmPage.setPrefHeight(0);
 		
 		
  		difficultyChoose.setItems(list);	
@@ -150,7 +144,7 @@ public class Controller implements Initializable {
 		    difficultyLevel = selectedIndex+Parameters.EASY;
 		});
 		choiceDeparture.setItems(airporList);	
-		// This listener is useless
+		/*// This listener is useless
 		choiceDeparture.setOnAction((event) -> {
 		    int selectedIndex = choiceDeparture.getSelectionModel().getSelectedIndex();
 		    Object selectedItem = choiceDeparture.getSelectionModel().getSelectedItem();
@@ -166,7 +160,7 @@ public class Controller implements Initializable {
 
 		    System.out.println("Selection made: [" + selectedIndex + "] " + selectedItem);
 		    System.out.println("   ChoiceBox.getValue(): " + choiceDestination.getValue());
-		});
+		});*/
 	}
 	
 	/*
@@ -187,5 +181,36 @@ public class Controller implements Initializable {
 			
 		
 	}	
+	@FXML
+	private Pane PackagePage;
+	
+	Accordion accordion;
+	private void renderView(int [] packages) {
+		accordion = new Accordion();
+		TitledPane [] tp = new TitledPane [packages.length];
+		double height = 70;
+		
+		for (TitledPane t : tp) {
+			Label lbl = new Label("foo \nbar");
+			height += 70;
+			VBox content = new VBox(lbl);
+			t = new TitledPane("trip" , content);
+			
+	        accordion.getPanes().add(t);
+		}
+		MainBox.setPrefHeight(height);
+        TitledPane pane1 = new TitledPane("Boats" , new Label("Show all boats available"));
+        TitledPane pane2 = new TitledPane("Cars"  , new Label("Show all cars available"));
+        TitledPane pane3 = new TitledPane("Planes", new Label("Show all planes available"));
+
+        accordion.getPanes().add(pane1);
+        accordion.getPanes().add(pane2);
+        accordion.getPanes().add(pane3);
+        
+        PackagePage.getChildren().addAll(accordion);
+		
+	}
+	
+	
 	
 }
