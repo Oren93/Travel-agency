@@ -1,4 +1,4 @@
-package data;
+package daytour.data;
 
 import java.io.*;
 import java.sql.*;

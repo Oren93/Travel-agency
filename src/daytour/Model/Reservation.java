@@ -1,4 +1,4 @@
-package Model;
+package daytour.model;
 
 /**
  * @author Team 3D

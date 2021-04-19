@@ -1,4 +1,4 @@
-package data;
+package daytour.data;
 
 import Model.Reservation;
 import Model.Tour;
