@@ -1,4 +1,4 @@
-package Controller;
+package daytour.controller;
 
 import java.time.LocalDate;
 import Model.Tour;
