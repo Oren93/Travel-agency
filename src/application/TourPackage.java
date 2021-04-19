@@ -19,7 +19,7 @@ class TourPackage {
 	 * @param p array of price contained in the package
 	 */
     Package (String pID, Tour [] t, Flight [] f,
-     Room [] r, float p)
+     Room [] r, double p)
     {
         setPackageID(pID);
         setTours(t);
@@ -30,7 +30,7 @@ class TourPackage {
 
     // set methods
     private void setPackageID() {
-        // add here math.Random to create package ID according to format
+        String packID = ; // add here math.Random to create package ID according to format
         packageID = packID;
     }
 
@@ -42,7 +42,7 @@ class TourPackage {
         if(fli.length == 2) {
             flights = fli;
         }
-        else  printError("there should be only 2 flights");
+        else printError("there should be only 2 flights");
     }
 
     private void setRooms(rs) {

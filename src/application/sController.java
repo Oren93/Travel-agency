@@ -13,14 +13,16 @@ import 3D.dController;
 
 class sController {
 	
-	private fController = new fController();
-	private hController = new hController();
-	private dController = new dController();
+	private fController;
+	private hController;
+	private dController;
 	
 	
     sController() {
+		fController = new fController();
+		hController = new hController();
+		dController = new dController();
     }
-}
 
 	private void getFlights(Parameter parameters) {
 
@@ -30,6 +32,8 @@ class sController {
     private void getTour(Parameter parameters) {
     	 ObservableList<Tour> dTour =  dController.TourController.searchTours( parameters);
     }
+
+	
 	//method to find the flight details 
 	Flight[] searchFlight (Parameter parameters){
 	    Flight[] departureF = fController.getAvailableFlights(Parameters, true); //boolean variable true if flight is dearture to destination
