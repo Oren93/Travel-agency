@@ -1,4 +1,4 @@
-package sample;
+package flights;
 
 import javafx.collections.ObservableList;
 import org.junit.*;

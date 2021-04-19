@@ -1,4 +1,4 @@
-package sample;
+package flights;
 
 public class CNST {
     private final int MAXGROUP = 20;

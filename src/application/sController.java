@@ -24,6 +24,7 @@ class sController {
 	private void getFlights(Parameters parameters) {
 
 	}
+
 	 //Details for finding the convenient day tour. 
 	//constructor 
     private void getTour(Parameters parameters) {

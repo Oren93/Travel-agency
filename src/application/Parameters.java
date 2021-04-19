@@ -111,7 +111,7 @@ public class Parameters {
 	public int getdifficulty () {
 		return difficulty;
 	}
-	int getLowerPrice () {
+	public int getLowerPrice () {
 		return price[0];
 	}
 	public int getMaxPrice () {
@@ -152,16 +152,17 @@ public class Parameters {
 				"Group size is "+groupSize;
 		return tostring;
 	}
+
 	private String extractCode(int s) {
 		switch(s) {
 		  case 1:
-			    return "Reykjavík";
+			    return "Reykjavï¿½k";
 		  case 2:
 			    return "Akureyri";
 		  case 3:
-			    return "Ísafjörður";
+			    return "ï¿½safjï¿½rï¿½ur";
 		  case 4:
-			    return "Egilstaðir";
+			    return "Egilstaï¿½ir";
 		  case 10:
 			    return "Handicaped accessibility";
 		  case 11:
@@ -175,5 +176,7 @@ public class Parameters {
 		}
 		
 	}
+
+	String location = extractCode(application.Parameters.getDestination());
 
 }

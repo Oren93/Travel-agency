@@ -1,4 +1,4 @@
-package sample;
+package flights;
 
 public class Seat {
     private String seatNumber;
