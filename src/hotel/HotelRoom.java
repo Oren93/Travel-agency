@@ -1,4 +1,4 @@
-// package application;
+package hotel;
 
 
 public class HotelRoom {
