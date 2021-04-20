@@ -4,30 +4,27 @@ import java.time.LocalDateTime;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.lang.*;
+import javafx.collections.ObservableList;
 
 import daytour.application.*;
 import daytour.controller.*;
 import daytour.data.*;
-//import daytour.fakeData.*;
-import daytour.model.*;
-//import 3H.*;
+import daytour.Model.*;
 import flights.*;
+//import daytour.fakeData.*;
+//import 3H.*;
 
 
 class sController {
 	
 	private FlightController flightC;
-	private hController hotelC;
+//	private hController hotelC;
 	private TourController dayTourC;
 	
 	
     sController() {
-		flightC = new FlightController();
-		hotelC = new hController(); //need  to resolve hController name
-		dayTourC = new TourController();
+    	
     }
-
-
 	 //Details for finding the convenient day tour. 
 	//constructor 
     private void getTour(Parameters parameters) {
@@ -115,9 +112,9 @@ class sController {
 			
 	        if(i<n) {
 				Duration duration = Duration.between(departureF[i].getDateDepartTime(), departureF[i].getDateArrivalTime());
-	            if (duration.toMinutes() <= departTime) { 
-	                shortFlight[0] = shortFlight[i];
-	                departTime = duration.toMinutes();
+	            if (duration.toMinutes() <= departTime) { //need to see if Fteam can have duration as int (in minutes) or if provide departure and arrive LocalDateTime, we can create the variable in the loop
+	                shortFlight[0] = Flight[i];
+	                departTime = departureF[i].getDuration();
 	            }
 	        }
 	        if(i<m) {
