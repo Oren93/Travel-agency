@@ -1,8 +1,10 @@
-package daytour.controller;
+package daytour;
 
-import daytour.model.*;
-import daytour.data.*;
-import static daytour.application.Utils.*;
+//import daytour.model.*;
+
+import static daytour.Utils.*;
+
+//import daytour.data.*;
 
 
 /**

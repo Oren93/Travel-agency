@@ -1,4 +1,4 @@
-package daytour.model;
+package daytour;
 
 import java.time.LocalDateTime;
 

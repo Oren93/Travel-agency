@@ -157,13 +157,13 @@ public class Parameters {
 	public String extractCode(int s) {
 		switch(s) {
 		  case 1:
-			    return "Reykjavï¿½k";
+			    return "Reykjavík";
 		  case 2:
 			    return "Akureyri";
 		  case 3:
-			    return "ï¿½safjï¿½rï¿½ur";
+			    return "Ísafjörður";
 		  case 4:
-			    return "Egilstaï¿½ir";
+			    return "Egilstaðir";
 		  case 10:
 			    return "Handicaped accessibility";
 		  case 11:

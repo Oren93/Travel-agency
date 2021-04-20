@@ -1,5 +1,6 @@
 package flights;
 
+import application.Parameters;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;

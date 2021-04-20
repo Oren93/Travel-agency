@@ -6,10 +6,7 @@ import java.time.temporal.ChronoUnit;
 import java.lang.*;
 import javafx.collections.ObservableList;
 
-import daytour.application.*;
-import daytour.controller.*;
-import daytour.data.*;
-import daytour.Model.*;
+import daytour.*;
 import flights.*;
 //import daytour.fakeData.*;
 //import 3H.*;
@@ -36,7 +33,7 @@ class sController {
 	
 	//method to find the flight details 
 	Flight[] searchCheapFlight (Parameters parameters){
-	    Flight[] departureF = flightC.getAvailableFlights(parameters, true); //boolean variable true if flight is dearture to destination
+	    Flight[] departureF = FlightController.getAvailableFlights(parameters, true); //boolean variable true if flight is dearture to destination
 	    Flight[] returnF = flightC.getAvailableFlights(parameters, false); //will return an Observable list, not arrray, need to check that
 	    
 		// create array that holds in the available rooms 

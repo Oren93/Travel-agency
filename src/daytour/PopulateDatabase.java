@@ -1,4 +1,6 @@
-package daytour.data;
+package daytour;
+
+import static daytour.Utils.*;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -10,7 +12,6 @@ import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import static daytour.application.Utils.*;
 
 /**
  * @author Team 3D

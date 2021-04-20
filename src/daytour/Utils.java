@@ -1,4 +1,4 @@
-package daytour.application;
+package daytour;
 
 import java.sql.Connection;
 import java.sql.SQLException;

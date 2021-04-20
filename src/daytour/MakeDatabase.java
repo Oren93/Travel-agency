@@ -1,9 +1,10 @@
-package daytour.data;
+package daytour;
+
+import static daytour.Utils.getSrcPath;
+import static daytour.Utils.getUrlAndDatabase;
 
 import java.io.*;
 import java.sql.*;
-import static daytour.application.Utils.getUrlAndDatabase;
-import static daytour.application.Utils.getSrcPath;
 
 /**
  * @author Team 3D

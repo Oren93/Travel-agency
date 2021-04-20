@@ -1,4 +1,4 @@
-package daytour.application;
+package daytour;
 import java.time.LocalDate;
 
 

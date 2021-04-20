@@ -1,4 +1,4 @@
-package daytour.model;
+package daytour;
 
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;

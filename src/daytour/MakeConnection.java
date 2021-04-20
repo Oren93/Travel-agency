@@ -1,4 +1,4 @@
-package daytour.data;
+package daytour;
 
 public interface MakeConnection {
 

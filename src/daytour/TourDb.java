@@ -1,14 +1,14 @@
-package daytour.data;
+package daytour;
 
 import java.time.LocalDate;
-import daytour.model.Tour;
-import daytour.model.TourDate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
+import static daytour.Utils.*;
+
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import static daytour.application.Utils.*;
 
 /**
  * @author Team 3D
