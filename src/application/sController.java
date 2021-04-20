@@ -119,12 +119,16 @@ class sController {
 		long voyageLength = parameters.getcheckIn().until(parameters.getcheckOut(), ChronoUnit.DAYS);//total length in days of the trip. was long online, not sure if can be int
 		ObservableList<Tour> tours = FXCollections.observableArrayList();
 		for (long i=0; i<voyageLength; i++){
-			double tourPrice = Double.POSITIVE_INFINITY;
+			int tourPrice = Integer.MAX_VALUE;
 			Tour thisTour = null;
 			for(Tour tour: dTour){
-				if (tour.getPrice() <= tourPrice && tour.) {
+				if (tour.getPrice() <= tourPrice) {
 					for(TourDate tourDate : Tour.getDates()) {
-						thisTour = tour;
+						LocalDate today = parameters.getcheckIn().plusDays(i);
+						if(today == tourDate.getDate().toLocalDate()) {
+							thisTour = tour;
+							tourPrice = tour.getPrice();
+						}
 					}
 				}
 			}
@@ -132,7 +136,9 @@ class sController {
 			dTour.remove(thisTour);
 
 			int low = parameters.getLowerPrice();
-			parameters.setPrice()
+			int budget = parameters.getMaxPrice() - tourPrice;
+			int[] price = new int[] {low,budget};
+			parameters.setPrice(price);
 		}
 	}
 
