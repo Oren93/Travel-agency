@@ -120,7 +120,7 @@ class sController {
 	    return bestRoom;
 	}
 
-	public ObservableList<Package> search(Parameters parameters) {
+	public void/*ObservableList<Package>*/ search(Parameters parameters) {
 		long voyageLength = parameters.getcheckIn().until(parameters.getcheckOut(), ChronoUnit.DAYS);//total length in days of the trip. was long online, not sure if can be int
 		TourPackage pCheapestFlights;
 		TourPackage PShortesFlights;
@@ -130,11 +130,11 @@ class sController {
 	    ObservableList<Flight> shortFlight = searchShortestFlights(parameters);
 		budgetCheapF -= (cheapFlight.get(0).getBasePrice() + cheapFlight.get(1).getBasePrice());
 	    budgetShortF -= (shortFlight.get(0).getBasePrice() + shortFlight.get(1).getBasePrice());
-		int[] price = new int[2];
-		int low = parameters.getLowerPrice();
-		price = [low, budgetCheapF];
-		parameters.set(price);
+	    int low = parameters.getLowerPrice();
+		int[] price = new int[] {low,(int)budgetCheapF};
+		parameters.setPrice(price);
 		HotelRoom bestRoom = searchBestRoom(parameters);
+
 	}
 	
 }
