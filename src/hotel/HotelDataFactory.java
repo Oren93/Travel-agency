@@ -5,8 +5,11 @@
 //   javac HotelDataFactory.java
 //   java -cp .;sqlite-jdbc-3.32.3.2.jar HotelDataFactory
 
-package application;
-// package flights;
+package hotel;
+
+import application;
+import flights;
+
 
 import java.io.*;
 import java.sql.*;
