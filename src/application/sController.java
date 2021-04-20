@@ -190,9 +190,27 @@ class sController {
 		return packages;
 	}
 
-	public static boolean bookPackage(TourPackage package, Passenger pass){
-		for(Tour tour: package.tours) {
-			confirmBooking(Package., TourDate tourDate, int noOfSeats, String customerName, String customerEmail);
+	public static boolean bookPackage(TourPackage p, Passenger pass, Parameters para){
+		boolean disability = false;
+		if (para.getdifficulty() == 10) disability = true;
+		ObservableList<Seat> availableSeatsDepart = getAvailableSeats(p.getFlights().get(0));
+		ObservableList<Seat> availableSeatsReturn = getAvailableSeats(p.getFlights().get(1));
+
+		ObservableList<Seat> SeatsDepart = FXCollections.observableArrayList();
+		ObservableList<Seat> SeatsReturn = FXCollections.observableArrayList();
+
+		for(int i = 0; i<para.getgroupSize(); i++) {
+			SeatsDepart.add(availableSeatsDepart.get(i));
+			SeatsReturn.add(availableSeatsReturn.get(i));
+		}
+
+		bookFlight(p.getFlights().get(0).getFlightNumber(), seatsDepart, pass, 0, 0, 0, 0, disability);
+		bookFlight(p.getFlights().get(1).getFlightNumber(), seatsReturn, pass, 0, 0, 0, 0, disability);
+
+		bookRoom(p.getRoom().getHotelName(), p, pass);
+
+		for(Tour tour: p.tours) {
+			ReservationController.confirmBooking(tour, TourDate tourDate, p.getgroupSize(), pass.getLastName(), String customerEmail);
 		}
 	}
 

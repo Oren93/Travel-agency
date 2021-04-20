@@ -22,7 +22,7 @@ class TourPackage {
         //setPackageID(pID);
         setTours(t);
         setFlights(f);
-        setRooms(r);
+        setRoom(r);
         setPrice(p);
     }
 
@@ -64,8 +64,8 @@ class TourPackage {
         return flights;
     }
 
-    ObservableList<HotelRoom> getRooms() {
-        return rooms,
+    HotelRoom getRoom() {
+        return room,
     }
 
     double getPrice() {
