@@ -1,10 +1,10 @@
 package application;
-import 3D.Tour; //need to talk to the others to get their classes
-import 3H.Room;
-import 3F.Flight;
+import daytour.*;
+import 3H.*;
+import flights.*;
 
 class TourPackage {
-    String packageID;
+    //String packageID;
     Tour [] tours;
     Flight [] flights;
     Room [] rooms;
@@ -28,11 +28,11 @@ class TourPackage {
         setPrice(p);
     }
 
-    // set methods
-    private void setPackageID() {
-        String packID = ; // add here math.Random to create package ID according to format
-        packageID = packID;
-    }
+    /* set methods
+    //private void setPackageID() {
+    //    String packID = ; // add here math.Random to create package ID according to format
+    //    packageID = packID;
+    */}
 
     private void setTours(tr) {
         tours = tr;
