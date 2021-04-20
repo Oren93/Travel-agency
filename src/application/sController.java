@@ -23,7 +23,9 @@ class sController {
 	
 	
     sController() {
-    	
+		flightC = new FlightController();
+//		hotelC = new hController(); //need  to resolve hController name
+		dayTourC = new TourController();
     }
 	 //Details for finding the convenient day tour. 
 	//constructor 
