@@ -2,70 +2,70 @@ package hotel;
 
 
 public class HotelRoom {
-    private String City;
-    private String HotelName;
-    private String Roomtype;
-    private String RoomNumber;
-    private int Occupancy;
-    private int PricePerNight;
-    private int HotelStar;
-    private String HotelAddress;
-    private String Disability;
+    private String city;
+    private String hotelName;
+    private String roomtype;
+    private String roomNumber;
+    private int occupancy;
+    private int pricePerNight;
+    private int hotelStar;
+    private String hotelAddress;
+    private String disability;
 
     public HotelRoom(String city, String hotelName, String roomtype, String roomNumber, int occupancy, int pricePerNight, int hotelStar, String hotelAddress, String disability) {
-        this.City = city;
-        this.HotelName = hotelName;
-        this.Roomtype = roomtype;
-        this.RoomNumber = roomNumber;
-        this.Occupancy = occupancy;
-        this.PricePerNight = pricePerNight;
-        this.HotelStar = hotelStar;
-        this.HotelAddress = hotelAddress;
-        this.Disability = disability;
+        this.city = city;
+        this.hotelName = hotelName;
+        this.roomtype = roomtype;
+        this.roomNumber = roomNumber;
+        this.occupancy = occupancy;
+        this.pricePerNight = pricePerNight;
+        this.hotelStar = hotelStar;
+        this.hotelAddress = hotelAddress;
+        this.disability = disability;
     }
 
     public String getCity() {
-        return City;
+        return city;
     }
 
     public void setCity(String city) {
-        City = city;
+        this city = city;
     }
 
     public String getHotelName() {
-        return HotelName;
+        return hotelName;
     }
 
     public void setHotelName(String hotelName) {
-        HotelName = hotelName;
+        this hotelName = hotelName;
     }
 
     public String getRoomtype() {
-        return Roomtype;
+        return roomtype;
     }
 
     public void setRoomtype(String roomtype) {
-        Roomtype = roomtype;
+        this roomtype = roomtype;
     }
     
     public String getRoomNumber() {
-      return RoomNumber;
+      return roomNumber;
   }
 
   public void setRoomNumber(String roomNumber) {
-      RoomNumber = roomNumber;
+      this roomNumber = roomNumber;
   }
 
     public int getOccupancy() {
-        return Occupancy;
+        return occupancy;
     }
 
     public void setOccupancy(int occupancy) {
-        Occupancy = occupancy;
+        this occupancy = occupancy;
     }
 
     public int getPricePerNight() {
-        return PricePerNight;
+        return pricePerNight;
     }
 
     public void setPricePerNight(int pricePerNight) {
@@ -73,26 +73,26 @@ public class HotelRoom {
     }
 
     public int getHotelStar() {
-        return HotelStar;
+        return hotelStar;
     }
 
     public void setHotelStar(int hotelStar) {
-        HotelStar = hotelStar;
+        this hotelStar = hotelStar;
     }
 
     public String getHotelAddress() {
-        return HotelAddress;
+        return hotelAddress;
     }
 
     public void setHotelAddress(String hotelAddress) {
-        HotelAddress = hotelAddress;
+        this hotelAddress = hotelAddress;
     }
 
     public String getDisability() {
-        return Disability;
+        return disability;
     }
 
     public void setDisability(String disability) {
-        Disability = disability;
+        this disability = disability;
     }
 }

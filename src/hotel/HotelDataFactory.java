@@ -92,7 +92,7 @@ public class HotelDataFactory
         String roomType = r.getString("roomType");
         String roomNumber = r.getString("roomNumber");
         int occupancy = r.getInt("occupants");
-				int price = r.getInt("price");
+	int price = r.getInt("price");
         int hotelStar = r.getInt("hotelStar");
         String hotelAddress = r.getString("hotelAddress");
         String disability = r.getString("disability");

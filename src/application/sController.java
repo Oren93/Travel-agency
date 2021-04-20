@@ -122,10 +122,17 @@ class sController {
 			double tourPrice = Double.POSITIVE_INFINITY;
 			Tour thisTour = null;
 			for(Tour tour: dTour){
-				if (tour.getPrice() <= tourPrice) thisTour = tour;
+				if (tour.getPrice() <= tourPrice && tour.) {
+					for(TourDate tourDate : Tour.getDates()) {
+						thisTour = tour;
+					}
+				}
 			}
 			tours.add(thisTour);
-			
+			dTour.remove(thisTour);
+
+			int low = parameters.getLowerPrice();
+			parameters.setPrice()
 		}
 	}
 
