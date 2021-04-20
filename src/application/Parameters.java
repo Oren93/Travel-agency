@@ -56,7 +56,7 @@ public class Parameters {
 		 price = new int [2];
 	}
 	
-	private void setPrice(int [] p) {
+	public void setPrice(int [] p) {
 		if (p[0]>0 && p[1]>p[0])
 			price = p;
 		else printError("Price error");
@@ -157,13 +157,13 @@ public class Parameters {
 	public String extractCode(int s) {
 		switch(s) {
 		  case 1:
-			    return "Reykjavík";
+			    return "Reykjavï¿½k";
 		  case 2:
 			    return "Akureyri";
 		  case 3:
-			    return "Ísafjörður";
+			    return "ï¿½safjï¿½rï¿½ur";
 		  case 4:
-			    return "Egilstaðir";
+			    return "Egilstaï¿½ir";
 		  case 10:
 			    return "Handicaped accessibility";
 		  case 11:

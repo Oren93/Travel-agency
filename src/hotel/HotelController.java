@@ -1,21 +1,16 @@
-import sample.DataFactory;
-
-
 package hotel;
 
-import application;
-import flights;
+import application.*;
+import flights.*;
 
 public class HotelController implements Initializable {
-
 
     private static HotelDataFactory dataFactory = new HotelDataFactory();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-      
+        
     }
-
 
     public static ObservableList<HotelRoom> GetHotelRooms(Parameters p){
             ObservableList<HotelRoom> hotelrooms = FXCollections.observableArrayList();

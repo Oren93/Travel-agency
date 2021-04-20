@@ -6,22 +6,23 @@ import java.time.temporal.ChronoUnit;
 import java.lang.*;
 import javafx.collections.*;
 
+
 import daytour.*;
 import flights.*;
 //import daytour.fakeData.*;
-//import 3H.*;
+import hotel.*;
 
 
 class sController {
 	
 	private FlightController flightC;
-//	private hController hotelC;
+	private HotelController hotelC;
 	private TourController dayTourC;
 	
 	//constructor
     sController() {
 		flightC = new FlightController();
-//		hotelC = new hController(); //need  to resolve hController name
+		hotelC = new HotelController();
 		dayTourC = new TourController();
     }
 
@@ -98,37 +99,43 @@ class sController {
 	}
 	
 	//method to find cheapest room for each day of trip 
-	Room[] searchRoom (Parameters parameters){
+	private HotelRoom searchCheapestRoom(Parameters parameters){
 		// create array that holds in the available rooms 
-	    //Room [] availableRoom; 
-	    //Room [] cheaprooms;
-	    //Room cheapestRoom ;
-	    //double roomPrice = Double.POSITIVE_INFINITY;
-	    for(long i=0; i<voyageLength; i++) {
-	        //create cheapestRoom array of length voyageLength, fill it with cheapest room for each night
-	    	//voyageLength =  total length of trip= number of days 
-	    	availableRoom = hcontroller.searchRooms(i);
-	    	for(int j=0; i<availableRoom.length; j++) {
-	    		if (roomPrice > availableRoom[j].getbasePrice())
-	    			cheapestRoom = availableRoom[j] ;
-	    	}
-	    	price1 -= cheapestRoom.getbasePrice();
-	    	price2 -= cheapestRoom.getbasePrice();
-	    	
-	    }
-	    return cheapestRoom[];
+		ObservableList<HotelRoom> Rooms = hotelC.GetHotelRooms(parameters);
+	    HotelRoom cheapestRoom = null;
+	    double roomPrice = Double.POSITIVE_INFINITY;
+	    for (HotelRoom room : Rooms) {
+			if (room.getPricePerNight() <= roomPrice) cheapestRoom = room;
+		}
+	    return cheapestRoom;
 	}
 
-	Package[] search(Parameters parameters) {
+	private HotelRoom searchBestRoom(Parameters parameters){
+		// create array that holds in the available rooms 
+		ObservableList<HotelRoom> Rooms = hotelC.GetHotelRooms(parameters);
+	    HotelRoom bestRoom = null;
+	    int hotelStar = 0;
+	    for (HotelRoom room : Rooms) {
+			if (room.getHotelStar() <= hotelStar) bestRoom = room;
+		}
+	    return bestRoom;
+	}
+
+	public ObservableList<Package> search(Parameters parameters) {
 		long voyageLength = parameters.getcheckIn().until(parameters.getcheckOut(), ChronoUnit.DAYS);//total length in days of the trip. was long online, not sure if can be int
 		TourPackage pCheapestFlights;
 		TourPackage PShortesFlights;
-		double priceCheapF = parameters.getMaxPrice();
-	    double priceShortF = priceCheapF;
-	    ObservableList<Flight>  cheapFlight = searchCheapestFlights(parameters);
-	    ObservableList<Flight>  shortFlight = searchShortestFlights(parameters);
-		priceCheapF -= (cheapFlight.get(0).getBasePrice() + cheapFlight.get(1).getBasePrice());
-	    priceShortF -= (shortFlight.get(0).getBasePrice() + shortFlight.get(1).getBasePrice());
+		double budgetCheapF = parameters.getMaxPrice();
+	    double budgetShortF = budgetCheapF;
+	    ObservableList<Flight> cheapFlight = searchCheapestFlights(parameters);
+	    ObservableList<Flight> shortFlight = searchShortestFlights(parameters);
+		budgetCheapF -= (cheapFlight.get(0).getBasePrice() + cheapFlight.get(1).getBasePrice());
+	    budgetShortF -= (shortFlight.get(0).getBasePrice() + shortFlight.get(1).getBasePrice());
+		int[] price = new int[2];
+		int low = parameters.getLowerPrice();
+		price = [low, budgetCheapF];
+		parameters.set(price);
+		HotelRoom bestRoom = searchBestRoom(parameters);
 	}
 	
 }
