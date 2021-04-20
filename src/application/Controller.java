@@ -87,8 +87,8 @@ public class Controller implements Initializable {
 			System.out.println(searchParam.toString()); // temporary, for testing purposes
 			/* HERE need to call a search mehtod with the Parameters object searchParam */
 			TourController tc = new TourController();
-			ObservableList<Tour> tours = tc.searchTour(searchParam);
-			renderView(tours);
+			//ObservableList<Tour> tours = tc.searchTour(searchParam);
+			//renderView(tours);
 			
 		} catch (Error e1) {
 			/* Need to pop up a window to indicate what is the error */		
@@ -98,8 +98,13 @@ public class Controller implements Initializable {
 		// after the search result yields results or after selecting a package 
 		boolean visibile = ConfirmPage.isVisible();
 		ConfirmPage.setVisible(!visibile);
-		//renderView(new int [25]);
-		//ConfirmPage.setPrefHeight(visibile? 2000 : 500); // NOT WORKING AS PLANNED
+		LocalDate foo [] = new LocalDate[] {LocalDate.now().plusDays(1),LocalDate.now().plusDays(8)};
+		Parameters searchParam = new Parameters (10,
+				new int [] {1000,1000000}, 1, foo, 2,1);
+		TourController tc = new TourController();
+		ObservableList<String> list = FXCollections.observableArrayList("Easy","Moderate","Hard");
+		//ObservableList<Tour> tours = tc.searchTour(searchParam);
+		renderView(list);
 		
 		}
 	}
@@ -201,22 +206,25 @@ public class Controller implements Initializable {
 	 * Render the view according to the search results
 	 * @param ol Observable list of tour packages
 	 */
-	private void renderView(ObservableList <Tour> ol) {
+	private void renderView(ObservableList <String> ol) {
 		accordion = new Accordion();
-		TitledPane [] tp = new TitledPane [ol.size()];
-		double height = 70;
-		int i = 0;
-//		while (i < ol.size()) {
-			ol.forEach((Tour t) -> {
-				System.out.println(t.getPrice());
-			});
-			Label lbl = new Label(i+ ". foo \nbar");
-			height += 70;
+		//TitledPane [] tp = new TitledPane [ol.size()];
+		double height = MainBox.getHeight()+70*ol.size();
+		int i = -1;
+		int j = ol.size();
+		while (++i < j) {
+			Label lbl = new Label(i+". foo \nbar");
 			VBox content = new VBox(lbl);
-			tp[i] = new TitledPane(i+": trip" , content);
-	        accordion.getPanes().add(tp[i]);
-	        i++;
-	//	}
+			TitledPane tp = new TitledPane(i+". "+": trip"+(ol.get(i)) , content);
+	        accordion.getPanes().add(tp);
+/*			ol.forEach((String t) -> {
+				System.out.println("bla bla bla "+t);
+				Label lbl = new Label(ol.indexOf(t)+". foo \nbar");
+				VBox content = new VBox(lbl);
+				TitledPane tp = new TitledPane(t+": trip" , content);
+		        accordion.getPanes().add(tp);
+			});
+*/		}
 		MainBox.setPrefHeight(height);
  
         PackagePage.getChildren().addAll(accordion);

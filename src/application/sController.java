@@ -149,7 +149,7 @@ class sController {
 		price[1] = (int)budgetShortF;
 		parameters.setPrice(price);
 		HotelRoom bestRoom = searchBestRoom(parameters);
-		
+
 	}
 
 }
