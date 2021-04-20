@@ -9,12 +9,7 @@ import javafx.collections.*;
 
 import daytour.*;
 import flights.*;
-<<<<<<< HEAD
-//import daytour.fakeData.*;
 import hotel.*;
-=======
-//import 3H.*;
->>>>>>> 8b04c72b37deb1ee3266957770e6512b788e79d4
 
 
 class sController {

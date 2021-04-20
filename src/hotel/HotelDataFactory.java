@@ -7,8 +7,8 @@
 
 package hotel;
 
-import application;
-import flights;
+import application.*;
+import flights.*;
 
 
 import java.io.*;
