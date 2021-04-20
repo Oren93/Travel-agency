@@ -69,9 +69,7 @@ public class TourController {
      */
     public ObservableList<Tour> searchTour(Parameters p) {
         int difficulty = p.getdifficulty();
-        if(10<difficulty&&difficulty<13) {
-            throw new IllegalArgumentException("Difficulty must be between 10 and 13 inclusive");
-        }
+
         int[] price = {p.getLowerPrice(), p.getMaxPrice()};
         if(price[0]<=0) {
             throw new IllegalArgumentException("Minimum price must be greater than zero");

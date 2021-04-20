@@ -46,7 +46,7 @@ public class Parameters {
 			setCheckIn(dateRange[0]);
 			setCheckOut(dateRange[1]);
 		}
-		setLocations(to, from);
+		setLocations(from,to);
 	}
 	
 	/**

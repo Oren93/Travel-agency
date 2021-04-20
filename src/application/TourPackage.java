@@ -11,12 +11,12 @@ class TourPackage {
     double price;
 
     /**
-	 * Constructor for an object type Package
-	 * @param pID package ID number
-	 * @param t array of tours contained in the package 
-	 * @param f array of flights contained in the package
-	 * @param r array of rooms contained in the package
-	 * @param p array of price contained in the package
+	 * Constructor for an object type TourPackage
+	 * @param pID TourPackage ID number
+	 * @param t array of tours contained in the TourPackage 
+	 * @param f array of flights contained in the TourPackage
+	 * @param r array of rooms contained in the TourPackage
+	 * @param p array of price contained in the TourPackage
 	 */
     TourPackage (String pID, Tour [] t, Flight [] f,
      /*Room [] r,*/ double p)
@@ -29,10 +29,10 @@ class TourPackage {
     }
 
     /* set methods
-    //private void setPackageID() {
-    //    String packID = ; // add here math.Random to create package ID according to format
-    //    packageID = packID;
-    */}
+    //private void setTourPackageID() {
+    //    String packID = ; // add here math.Random to create TourPackage ID according to format
+    //    TourPackageID = packID;
+    }*/
 
     private void setTours(ObservableList<Tour> tr) {
         tours = tr;
@@ -54,8 +54,8 @@ class TourPackage {
     }
 
     // get methods
-    String getPackageID() {
-        return packageID;
+    String getTourPackageID() {
+        return TourPackageID;
     }
 
     ObservableList<Tour> getTours() {
