@@ -4,10 +4,7 @@ import java.time.LocalDateTime;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.lang.*;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import java.util.List;
+import javafx.collections.*;
 
 import daytour.*;
 import flights.*;
@@ -21,14 +18,14 @@ class sController {
 //	private hController hotelC;
 	private TourController dayTourC;
 	
-	
+	//constructor
     sController() {
 		flightC = new FlightController();
 //		hotelC = new hController(); //need  to resolve hController name
 		dayTourC = new TourController();
     }
+
 	 //Details for finding the convenient day tour. 
-	//constructor 
     private void getTour(Parameters parameters) {
     	 ObservableList<Tour> dTour =  dayTourC.searchTour(parameters);
 		 long voyageLength = parameters.getcheckIn().until(parameters.getcheckOut(), ChronoUnit.DAYS);//total length in days of the trip. was long online, not sure if can be int
@@ -92,7 +89,7 @@ class sController {
 	            returnTime = duration.toMinutes();
 	        }
 	    }  
-		 
+
 		ObservableList<Flight> shortFlight = FXCollections.observableArrayList();
 	    shortFlight.add(shortDepart);
     	shortFlight.add(shortReturn);
@@ -120,10 +117,6 @@ class sController {
 	    	
 	    }
 	    return cheapestRoom[];
-	}
-	//method to find convinient tours for each day 
-	Tour[] searchDayTour (Parameters parameters){
-		
 	}
 
 	Package[] search(Parameters parameters) {
