@@ -1,27 +1,26 @@
 package application;
 import daytour.*;
-import 3H.*;
+//import 3H.*;
 import flights.*;
 
-class TourPackage {
-    //String packageID;
+class TourTourPackage {
+    //String TourPackageID;
     Tour [] tours;
     Flight [] flights;
-    Room [] rooms;
+    //Room [] rooms;
     double price;
 
     /**
-	 * Constructor for an object type Package
-	 * @param pID package ID number
-	 * @param t array of tours contained in the package 
-	 * @param f array of flights contained in the package
-	 * @param r array of rooms contained in the package
-	 * @param p array of price contained in the package
+	 * Constructor for an object type TourPackage
+	 * @param pID TourPackage ID number
+	 * @param t array of tours contained in the TourPackage 
+	 * @param f array of flights contained in the TourPackage
+	 * @param r array of rooms contained in the TourPackage
+	 * @param p array of price contained in the TourPackage
 	 */
-    Package (String pID, Tour [] t, Flight [] f,
-     Room [] r, double p)
+    TourPackage (String pID, Tour [] t, Flight [] f/*,Room [] r*/, double p)
     {
-        setPackageID(pID);
+        setTourPackageID(pID);
         setTours(t);
         setFlights(f);
         setRooms(r);
@@ -29,10 +28,10 @@ class TourPackage {
     }
 
     /* set methods
-    //private void setPackageID() {
-    //    String packID = ; // add here math.Random to create package ID according to format
-    //    packageID = packID;
-    */}
+    //private void setTourPackageID() {
+    //    String packID = ; // add here math.Random to create TourPackage ID according to format
+    //    TourPackageID = packID;
+    }*/
 
     private void setTours(tr) {
         tours = tr;
@@ -54,8 +53,8 @@ class TourPackage {
     }
 
     // get methods
-    String getPackageID() {
-        return packageID;
+    String getTourPackageID() {
+        return TourPackageID;
     }
 
     Tour [] getTours() {

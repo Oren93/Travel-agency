@@ -8,7 +8,6 @@ import javafx.collections.ObservableList;
 
 import daytour.*;
 import flights.*;
-//import daytour.fakeData.*;
 //import 3H.*;
 
 

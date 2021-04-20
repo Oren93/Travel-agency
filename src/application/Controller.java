@@ -2,6 +2,7 @@
  * 
  */
 package application;
+import daytour.*;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -85,6 +86,10 @@ public class Controller implements Initializable {
 					priceRange, groupS, dateRange,selectedAirportDeparture, selectedAirportDestination);
 			System.out.println(searchParam.toString()); // temporary, for testing purposes
 			/* HERE need to call a search mehtod with the Parameters object searchParam */
+			TourController tc = new TourController();
+			ObservableList<Tour> tours = tc.searchTour(searchParam);
+			renderView(tours);
+			
 		} catch (Error e1) {
 			/* Need to pop up a window to indicate what is the error */		
 		}
@@ -93,7 +98,7 @@ public class Controller implements Initializable {
 		// after the search result yields results or after selecting a package 
 		boolean visibile = ConfirmPage.isVisible();
 		ConfirmPage.setVisible(!visibile);
-		renderView(new int [25]);
+		//renderView(new int [25]);
 		//ConfirmPage.setPrefHeight(visibile? 2000 : 500); // NOT WORKING AS PLANNED
 		
 		}
@@ -109,10 +114,10 @@ public class Controller implements Initializable {
 	ObservableList<String> list = FXCollections.observableArrayList("Easy","Moderate","Hard");
 	public ChoiceBox<String> choiceDeparture;
 	ObservableList<String> airporList = FXCollections.observableArrayList(
-			"Reykjavík","Akureyri","Egilstaðir","Ísafjörður");
+			"Reykjavík","Akureyri","Ísafjörður","Egilstaðir");
 	public ChoiceBox<String> choiceDestination;
 	ObservableList<String> travelDestination = FXCollections.observableArrayList(
-			"South-west","North","East fjords","west fjords");
+			"South-west","North","west fjords","East fjords");
 
 	@FXML
 	private Button confirm;
@@ -149,7 +154,9 @@ public class Controller implements Initializable {
 		    int selectedIndex = difficultyChoose.getSelectionModel().getSelectedIndex();
 		    difficultyLevel = selectedIndex+Parameters.EASY;
 		});
-		choiceDeparture.setItems(airporList);	
+		choiceDeparture.setItems(airporList);
+		choiceDestination.setItems(travelDestination);	
+		
 		/*// This listener is useless
 		choiceDeparture.setOnAction((event) -> {
 		    int selectedIndex = choiceDeparture.getSelectionModel().getSelectedIndex();
@@ -158,7 +165,6 @@ public class Controller implements Initializable {
 		    System.out.println("Selection made: [" + selectedIndex + "] " + selectedItem);
 		    System.out.println("   ChoiceBox.getValue(): " + choiceDeparture.getValue());
 		});
-		choiceDestination.setItems(travelDestination);	
 		// this listener is also useless
 		choiceDestination.setOnAction((event) -> {
 		    int selectedIndex = choiceDestination.getSelectionModel().getSelectedIndex();
@@ -191,28 +197,28 @@ public class Controller implements Initializable {
 	private Pane PackagePage;
 	
 	Accordion accordion;
-	private void renderView(int [] packages) {
+	/**
+	 * Render the view according to the search results
+	 * @param ol Observable list of tour packages
+	 */
+	private void renderView(ObservableList <Tour> ol) {
 		accordion = new Accordion();
-		TitledPane [] tp = new TitledPane [packages.length];
+		TitledPane [] tp = new TitledPane [ol.size()];
 		double height = 70;
 		int i = 0;
-		while (i < packages.length) {
+//		while (i < ol.size()) {
+			ol.forEach((Tour t) -> {
+				System.out.println(t.getPrice());
+			});
 			Label lbl = new Label(i+ ". foo \nbar");
 			height += 70;
 			VBox content = new VBox(lbl);
 			tp[i] = new TitledPane(i+": trip" , content);
 	        accordion.getPanes().add(tp[i]);
 	        i++;
-		}
+	//	}
 		MainBox.setPrefHeight(height);
-        TitledPane pane1 = new TitledPane("Boats" , new Label("Show all boats available"));
-        TitledPane pane2 = new TitledPane("Cars"  , new Label("Show all cars available"));
-        TitledPane pane3 = new TitledPane("Planes", new Label("Show all planes available"));
-
-        accordion.getPanes().add(pane1);
-        accordion.getPanes().add(pane2);
-        accordion.getPanes().add(pane3);
-        
+ 
         PackagePage.getChildren().addAll(accordion);
 	}
 	
@@ -220,24 +226,23 @@ public class Controller implements Initializable {
 	@FXML
 	private TextField fname, lname, kt;
 	@FXML
+	/**
+	 * Get the contact info from the user when clicking the Confirm button
+	 * and send over booking requests to the hotel, flight and trips
+	 * @param e
+	 */
 	private void getDetails (ActionEvent e) {
-		int i = 1;
 		try {			
 			String fNm, lNm, kenitala;
 			fNm = fname.getText();
 			lNm = lname.getText();
 			kenitala = kt.getText();
-			//flights.Passenger;// = new Passenger(fNm,lNm,kenitala);
 			flights.Passenger person = new flights.Passenger(kenitala,fNm,lNm);
 			TitledPane tp = accordion.getExpandedPane();
-			//System.out.println(tp.getContentDisplay());
-			//System.out.println(tp.getContent().toString());
 			System.out.println(tp.getText());	
-			i++;
 		} catch (Error e2) {
-			i--;
 		}
-		System.out.println(i);
+		/*
 		String er = "Error";
 		System.out.println(er);
 		Stage dialogStage = new Stage();
@@ -248,11 +253,8 @@ public class Controller implements Initializable {
 		vbox.setPadding(new Insets(15));
 
 		dialogStage.setScene(new Scene(vbox));
-		dialogStage.show();
-		
-		
-		
-		
+		dialogStage.show();	
+		*/	
 	}
 	
 }
