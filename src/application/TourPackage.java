@@ -6,8 +6,8 @@ import flights.*;
 class TourPackage {
     //String packageID;
     ObservableList<Tour> tours;
-    ObservableList<Flight> [] flights;
-    //ObservableList<Room> [] rooms;
+    ObservableList<Flight> flights;
+    //ObservableList<Room> rooms;
     double price;
 
     /**
