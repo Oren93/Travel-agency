@@ -1,6 +1,10 @@
 import sample.DataFactory;
 
-// package application;
+
+package hotel;
+
+import application;
+import flights;
 
 public class HotelController implements Initializable {
 
