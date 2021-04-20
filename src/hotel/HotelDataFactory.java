@@ -77,11 +77,11 @@ public class HotelDataFactory
        }
 
       r = statement.executeQuery("SELECT hotelCity, hotelName, roomType, roomNumber, occupants, price, hotelStar, hotelAddress, disability FROM Hotel H, Rooms R WHERE " + 
-																		"H.hotelName = R.hotel AND hotelCity = '" + city + "' AND R.occupants >= " + occupants + " AND disability = '" + dis + "' AND price BETWEEN " + lP + " AND " + mP  + " AND NOT EXISTS(" + 
-																		"SELECT hotelBooking, roomNumberBooking, checkIn, checkOut FROM bookings BB WHERE" + 
-                                    "(checkIn >= DATE('" + checkIn + "') AND checkIn < DATE('" + checkOut + "')) OR" + 
-                                    "(checkOut > DATE('" + checkIn + "') AND checkOut < DATE('" + checkOut + "')))"
-                                    );
+					"H.hotelName = R.hotel AND hotelCity = '" + city + "' AND R.occupants >= " + occupants + " AND disability = '" + dis + "' AND price BETWEEN " + lP + " AND " + mP  + " AND NOT EXISTS(" + 
+					"SELECT hotelBooking, roomNumberBooking, checkIn, checkOut FROM bookings BB WHERE" + 
+                                    		"(checkIn >= DATE('" + checkIn + "') AND checkIn < DATE('" + checkOut + "')) OR" + 
+                                    		"(checkOut > DATE('" + checkIn + "') AND checkOut < DATE('" + checkOut + "')))"
+                                 );
 
       while(r.next())
       {
