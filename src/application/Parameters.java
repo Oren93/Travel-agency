@@ -153,7 +153,7 @@ public class Parameters {
 		return tostring;
 	}
 
-	private String extractCode(int s) {
+	public String extractCode(int s) {
 		switch(s) {
 		  case 1:
 			    return "Reykjav�k";
