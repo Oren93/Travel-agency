@@ -29,7 +29,7 @@ public class HotelRoom {
     }
 
     public void setCity(String city) {
-        this city = city;
+        this.city = city;
     }
 
     public String getHotelName() {
@@ -37,7 +37,7 @@ public class HotelRoom {
     }
 
     public void setHotelName(String hotelName) {
-        this hotelName = hotelName;
+        this.hotelName = hotelName;
     }
 
     public String getRoomtype() {
@@ -45,7 +45,7 @@ public class HotelRoom {
     }
 
     public void setRoomtype(String roomtype) {
-        this roomtype = roomtype;
+        this.roomtype = roomtype;
     }
     
     public String getRoomNumber() {
@@ -53,7 +53,7 @@ public class HotelRoom {
   }
 
   public void setRoomNumber(String roomNumber) {
-      this roomNumber = roomNumber;
+      this.roomNumber = roomNumber;
   }
 
     public int getOccupancy() {
@@ -61,7 +61,7 @@ public class HotelRoom {
     }
 
     public void setOccupancy(int occupancy) {
-        this occupancy = occupancy;
+        this.occupancy = occupancy;
     }
 
     public int getPricePerNight() {
@@ -69,7 +69,7 @@ public class HotelRoom {
     }
 
     public void setPricePerNight(int pricePerNight) {
-        PricePerNight = pricePerNight;
+    	this.pricePerNight = pricePerNight;
     }
 
     public int getHotelStar() {
@@ -77,7 +77,7 @@ public class HotelRoom {
     }
 
     public void setHotelStar(int hotelStar) {
-        this hotelStar = hotelStar;
+        this.hotelStar = hotelStar;
     }
 
     public String getHotelAddress() {
@@ -85,7 +85,7 @@ public class HotelRoom {
     }
 
     public void setHotelAddress(String hotelAddress) {
-        this hotelAddress = hotelAddress;
+        this.hotelAddress = hotelAddress;
     }
 
     public String getDisability() {
@@ -93,6 +93,6 @@ public class HotelRoom {
     }
 
     public void setDisability(String disability) {
-        this disability = disability;
+        this.disability = disability;
     }
 }

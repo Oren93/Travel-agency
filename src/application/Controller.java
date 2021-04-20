@@ -3,6 +3,7 @@
  */
 package application;
 import daytour.*;
+import hotel.HotelController;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -44,6 +45,7 @@ public class Controller implements Initializable {
 	final private int MIN_PRICE = 1000;
 	final private int MAX_PRICE = 1000000;
 	final private int GROUOP_SIZE = Parameters.MAXGROUP;
+	Parameters searchParam;
 	
 	private boolean handicappedAssistanceRequired = false;
 	private int difficultyLevel;
@@ -82,7 +84,7 @@ public class Controller implements Initializable {
 			int selectedAirportDestination = choiceDestination.getSelectionModel().getSelectedIndex()+1;
 			if (difficultyLevel < Parameters.EASY)
 				difficultyLevel = Parameters.HANDICAP;
-			Parameters searchParam = new Parameters (difficultyLevel,
+			searchParam = new Parameters (difficultyLevel,
 					priceRange, groupS, dateRange,selectedAirportDeparture, selectedAirportDestination);
 			System.out.println(searchParam.toString()); // temporary, for testing purposes
 			/* HERE need to call a search mehtod with the Parameters object searchParam */
@@ -101,6 +103,7 @@ public class Controller implements Initializable {
 		LocalDate foo [] = new LocalDate[] {LocalDate.now().plusDays(1),LocalDate.now().plusDays(8)};
 		Parameters searchParam = new Parameters (10,
 				new int [] {1000,1000000}, 1, foo, 2,1);
+		ObservableList hotelRooms = HotelController.GetHotelRooms(searchParam); 
 		TourController tc = new TourController();
 		ObservableList<String> list = FXCollections.observableArrayList("Easy","Moderate","Hard");
 		//ObservableList<Tour> tours = tc.searchTour(searchParam);
@@ -231,6 +234,7 @@ public class Controller implements Initializable {
 			flights.Passenger person = new flights.Passenger(kenitala,fNm,lNm);
 			TitledPane tp = accordion.getExpandedPane();
 			System.out.println(tp.getText());	
+			boolean confirmed = HotelController.bookRoom("",searchParam, person);
 		} catch (Error e2) {
 		}
 		/*

@@ -47,7 +47,7 @@ public class HotelDataFactory
     try
     {
       // create a database connection
-      connection = DriverManager.getConnection("jdbc:sqlite:Hotel.db");
+      connection = DriverManager.getConnection("jdbc:sqlite:Hotel.sqlite");
       statement = connection.createStatement();
 
       /**
