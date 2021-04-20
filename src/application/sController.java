@@ -8,9 +8,9 @@ import java.lang.*;
 import daytour.application.*;
 import daytour.controller.*;
 import daytour.data.*;
-import daytour.fakeData.*;
+//import daytour.fakeData.*;
 import daytour.model.*;
-import 3H.*;
+//import 3H.*;
 import flights.*;
 
 
@@ -115,9 +115,9 @@ class sController {
 			
 	        if(i<n) {
 				Duration duration = Duration.between(departureF[i].getDateDepartTime(), departureF[i].getDateArrivalTime());
-	            if (duration.toMinutes() <= departTime) { //need to see if Fteam can have duration as int (in minutes) or if provide departure and arrive LocalDateTime, we can create the variable in the loop
-	                shortFlight[0] = Flight[i];
-	                departTime = departureF[i].getDuration();
+	            if (duration.toMinutes() <= departTime) { 
+	                shortFlight[0] = shortFlight[i];
+	                departTime = duration.toMinutes();
 	            }
 	        }
 	        if(i<m) {
