@@ -1,13 +1,13 @@
 package application;
 import daytour.*;
-import 3H.*;
+//import 3H.*;
 import flights.*;
 
 class TourPackage {
     //String packageID;
-    Tour [] tours;
-    Flight [] flights;
-    Room [] rooms;
+    ObservableList<Tour> tours;
+    ObservableList<Flight> [] flights;
+    //ObservableList<Room> [] rooms;
     double price;
 
     /**
@@ -18,10 +18,10 @@ class TourPackage {
 	 * @param r array of rooms contained in the package
 	 * @param p array of price contained in the package
 	 */
-    Package (String pID, Tour [] t, Flight [] f,
-     Room [] r, double p)
+    TourPackage (String pID, Tour [] t, Flight [] f,
+     /*Room [] r,*/ double p)
     {
-        setPackageID(pID);
+        //setPackageID(pID);
         setTours(t);
         setFlights(f);
         setRooms(r);
@@ -34,22 +34,22 @@ class TourPackage {
     //    packageID = packID;
     */}
 
-    private void setTours(tr) {
+    private void setTours(ObservableList<Tour> tr) {
         tours = tr;
     }
 
-    private void setFlights(fli) {
+    private void setFlights(ObservableList<Flight> fli) {
         if(fli.length == 2) {
             flights = fli;
         }
         else printError("there should be only 2 flights");
     }
 
-    private void setRooms(rs) {
-        rooms = rs;
-    }
+    //private void setRooms(ObservableList<Room>rs) {
+    //    rooms = rs;
+    //}
 
-    private void setPrice(pri) {
+    private void setPrice(double pri) {
         price = pri;
     }
 
@@ -58,19 +58,19 @@ class TourPackage {
         return packageID;
     }
 
-    Tour [] getTours() {
+    ObservableList<Tour> getTours() {
         return tours;
     }
 
-    Flight [] getFlights() {
+    ObservableList<Flight> getFlights() {
         return flights;
     }
 
-    Room [] getRooms() {
-        return rooms,
-    }
+    //ObservableList<Room> getRooms() {
+    //    return rooms,
+    //}
 
-    float getPrice() {
+    double getPrice() {
         return price;
     }
 
