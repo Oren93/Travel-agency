@@ -13,11 +13,12 @@ import flights.*;
 
 import java.io.*;
 import java.sql.*;
-import java.util.Observable;
+import java.util.ArrayList;
+//import java.util.Observable;
 import java.util.Scanner;
 
-import HotelClasses.Booking;
-import HotelClasses.Guest;
+//import HotelClasses.Booking;
+//import HotelClasses.Guest;
 
 import java.sql.DriverManager;
 import java.sql.Connection;
@@ -40,7 +41,7 @@ public class HotelDataFactory
     Statement statement = null;
     Connection connection = null;
 
-    ArrayListt<HotelRoom> hotelRoom = new ArrayList<>();
+    ArrayList<HotelRoom> hotelRoom = new ArrayList<>();
   
 
     try
@@ -129,6 +130,7 @@ public class HotelDataFactory
         System.err.println(e1.getMessage() + "Villa í finally findHotel() finally");
       }
     }
+    return hotelRoom;
   }
   
   public void newGuest(Passenger p)
@@ -155,11 +157,11 @@ public class HotelDataFactory
       String email = "";
       String ssn = p.getSsn();
 
-      r = statement.executeQuery("SELECT ssn FROM Guest WHERE ssn = '" + currentSSN + "'");
+      r = statement.executeQuery("SELECT ssn FROM Guest WHERE ssn = '" + ssn + "'");
       if (r.next() == false)
       {
         updateSM.executeUpdate("INSERT INTO Guest VALUES('" + fName + "', '" + lName + "', '" + phoneNumber + "', '" + email + "', '" + ssn + "')");
-        Guest addGuest = new Guest(fName, lName, phoneNumber, email, ssn);
+        //Guest addGuest = new Guest(fName, lName, phoneNumber, email, ssn);
 
         // addNewGuest.add(addGuest);
       }
@@ -226,7 +228,7 @@ public class HotelDataFactory
       LocalDate checkOut = p.getcheckOut();
       String ssn = pass.getSsn();
 
-      r = statement.executeUpdate("INSERT INTO bookings VALUES('" + hotelName + "', '" + roomNumber + "', '" + checkIn + "', '" + checkOut + "', '" + ssn + "')");
+      statement.executeUpdate("INSERT INTO bookings VALUES('" + hotelName + "', '" + roomNumber + "', '" + checkIn + "', '" + checkOut + "', '" + ssn + "')");
       
 
       //return addNewBooking;
