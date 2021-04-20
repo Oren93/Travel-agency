@@ -4,7 +4,10 @@ import java.time.LocalDateTime;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.lang.*;
+
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import java.util.List;
 
 import daytour.*;
 import flights.*;
@@ -36,15 +39,12 @@ class sController {
 	private ObservableList<Flight> searchCheapestFlights(Parameters parameters){
 	    ObservableList<Flight> departureF = flightC.getAvailableFlights(parameters, true); //boolean variable true if flight is dearture to destination
 	    ObservableList<Flight> returnF = flightC.getAvailableFlights(parameters, false); //will return an Observable list, not arrray, need to check that
-	    
-	    int n = departureF.length;
-	    int m = returnF.length;
-			
+	
 	    double departPrice = Double.POSITIVE_INFINITY;
 	    double returnPrice = Double.POSITIVE_INFINITY;
 	
-		Flight cheapDepart;
-		Flight cheapReturn;
+		Flight cheapDepart = null;
+		Flight cheapReturn = null;
 
 	    for (Flight flight : departureF) {
 			if (flight.getBasePrice() <= departPrice) {
@@ -71,14 +71,12 @@ class sController {
 		ObservableList<Flight> departureF = flightC.getAvailableFlights(parameters, true); //boolean variable true if flight is dearture to destination
 	    ObservableList<Flight> returnF = flightC.getAvailableFlights(parameters, false); //will return an Observable list, not arrray, need to check that
 	    
-	    int n = departureF.length;
-	    int m = returnF.length;
 
 		double departTime = Double.POSITIVE_INFINITY;
 	    double returnTime = Double.POSITIVE_INFINITY;
 		
-		Flight shortDepart;
-		Flight shortReturn;
+		Flight shortDepart = null;
+		Flight shortReturn = null;
 
 	    for (Flight flight : departureF) {
 			Duration duration = Duration.between(flight.getDateDepartTime(), flight.getDateArrivalTime());
@@ -134,10 +132,10 @@ class sController {
 		TourPackage PShortesFlights;
 		double priceCheapF = parameters.getMaxPrice();
 	    double priceShortF = priceCheapF;
-		Flight[] cheapFlight = searchCheapestFlights(parameters);
-		Flight[] shortFlight = searchShortestFlights(parameters);
-		priceCheapF -= (cheapFlight[0].getBasePrice() + cheapFlight[1].getBasePrice());
-	    priceShortF -= (shortFlight[0].getBasePrice() + shortFlight[1].getBasePrice());
+	    ObservableList<Flight>  cheapFlight = searchCheapestFlights(parameters);
+	    ObservableList<Flight>  shortFlight = searchShortestFlights(parameters);
+		priceCheapF -= (cheapFlight.get(0).getBasePrice() + cheapFlight.get(1).getBasePrice());
+	    priceShortF -= (shortFlight.get(0).getBasePrice() + shortFlight.get(1).getBasePrice());
 	}
 	
 }
