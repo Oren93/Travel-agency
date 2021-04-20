@@ -14,7 +14,7 @@ import javafx.fxml.Initializable;
 
 public class HotelController implements Initializable {
 
-    private static HotelDataFactory hoteRoomDB = new HotelDataFactory();
+    private static HotelDataFactory hotelRoomDB = new HotelDataFactory();
 
     public void initialize(URL location, ResourceBundle resources) {
         
@@ -25,18 +25,21 @@ public class HotelController implements Initializable {
         
             // finds and returns list of available rooms given the criteria is met.
             try {
-            hotelrooms = FXCollections.observableArrayList(hoteRoomDB.findHotelRoom(p));
-            //hotelrooms.add(hoteRoomDB.findHotelRoom(p));
+            hotelrooms = FXCollections.observableArrayList(hotelRoomDB.findHotelRoom(p));
+            //hotelrooms.add(hotelRoomDB.findHotelRoom(p));
+    		System.out.println("yay");
             } catch (ClassNotFoundException e) {
+        		System.out.println("nei");
             }
-            
+
+    		System.out.println("sadgdsfhsdhtrg");
             return hotelrooms;
      }
      public static boolean bookRoom(String hotelName, Parameters p, Passenger pass){
            // Finds whether an ssn exists in the db table Guest.
            // If it exists it'll enter user informatior to the table, else it will just update the existing user in case they have changed their names etc.
     	   try {
-			hoteRoomDB.newGuest(pass);
+			hotelRoomDB.newGuest(pass);
 		} catch (ClassNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -54,7 +57,7 @@ public class HotelController implements Initializable {
                 if (hr.getHotelName() == hotelName) {
                     // Here we create the booking from the Parameters class.
                 	try {
-						hoteRoomDB.booking(hr, p, pass);
+						hotelRoomDB.booking(hr, p, pass);
 					} catch (ClassNotFoundException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

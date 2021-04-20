@@ -4,6 +4,7 @@
 package application;
 import daytour.*;
 import hotel.HotelController;
+import hotel.HotelRoom;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -103,7 +104,9 @@ public class Controller implements Initializable {
 		LocalDate foo [] = new LocalDate[] {LocalDate.now().plusDays(1),LocalDate.now().plusDays(8)};
 		Parameters searchParam = new Parameters (10,
 				new int [] {1000,1000000}, 1, foo, 2,1);
-		ObservableList hotelRooms = HotelController.GetHotelRooms(searchParam); 
+		ObservableList<HotelRoom> hotelRooms = FXCollections.observableArrayList();
+		hotelRooms = HotelController.GetHotelRooms(searchParam); 
+		System.out.println(hotelRooms.isEmpty());
 		TourController tc = new TourController();
 		ObservableList<String> list = FXCollections.observableArrayList("Easy","Moderate","Hard");
 		//ObservableList<Tour> tours = tc.searchTour(searchParam);

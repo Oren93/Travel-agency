@@ -149,7 +149,7 @@ public class HotelDataFactory
     {
       // create a database connection
       Class.forName("org.sqlite.JDBC");
-      connection = DriverManager.getConnection("jdbc:sqlite:Hotel.db");
+      connection = DriverManager.getConnection("jdbc:sqlite::resource/Hotel.db");
       statement = connection.createStatement();
       updateSM = connection.createStatement();
 

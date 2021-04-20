@@ -1,18 +1,5 @@
 package daytour;
 
-<<<<<<< Updated upstream:src/daytour/ReservationController.java
-//import daytour.model.*;
-
-import static daytour.Utils.*;
-
-//import daytour.data.*;
-=======
-import daytour.Model.*;
-import daytour.data.*;
-import static daytour.application.Utils.*;
->>>>>>> Stashed changes:src/daytour/controller/ReservationController.java
-
-
 /**
  * @author Team 3D
  *
@@ -37,7 +24,7 @@ public class ReservationController {
      * @return booking ID if confirmation successful, otherwise 0.
      */
     public int confirmBooking(Tour tour, TourDate tourDate, int noOfSeats, String customerName, String customerEmail) {
-        if(!isValidEmail(customerEmail)) {
+        if(!Utils.isValidEmail(customerEmail)) {
             throw new IllegalArgumentException("Email is not valid");
         }
         if(customerName.equals("")) {
