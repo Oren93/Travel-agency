@@ -47,6 +47,7 @@ public class HotelDataFactory
     try
     {
       // create a database connection
+      Class.forName("org.sqlite.JDBC");
       connection = DriverManager.getConnection("jdbc:sqlite:Hotel.db");
       statement = connection.createStatement();
 
@@ -147,6 +148,7 @@ public class HotelDataFactory
     try
     {
       // create a database connection
+      Class.forName("org.sqlite.JDBC");
       connection = DriverManager.getConnection("jdbc:sqlite:Hotel.db");
       statement = connection.createStatement();
       updateSM = connection.createStatement();
@@ -219,6 +221,7 @@ public class HotelDataFactory
     try
     {
       // create a database connection
+      Class.forName("org.sqlite.JDBC");
       connection = DriverManager.getConnection("jdbc:sqlite:Hotel.db");
       statement = connection.createStatement();
 
