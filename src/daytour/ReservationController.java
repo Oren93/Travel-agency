@@ -1,10 +1,16 @@
 package daytour;
 
+<<<<<<< Updated upstream:src/daytour/ReservationController.java
 //import daytour.model.*;
 
 import static daytour.Utils.*;
 
 //import daytour.data.*;
+=======
+import daytour.Model.*;
+import daytour.data.*;
+import static daytour.application.Utils.*;
+>>>>>>> Stashed changes:src/daytour/controller/ReservationController.java
 
 
 /**
