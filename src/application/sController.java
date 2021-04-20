@@ -81,22 +81,24 @@ class sController {
 		Flight shortReturn;
 
 	    for (Flight flight : departureF) {
-				Duration duration = Duration.between(departureF[i].getDateDepartTime(), departureF[i].getDateArrivalTime());
-	            if (duration.toMinutes() <= departTime) { //need to see if Fteam can have duration as int (in minutes) or if provide departure and arrive LocalDateTime, we can create the variable in the loop
-	                shortFlight[0] = shortFlight[0];
-	                departTime = duration.toMinutes();
-	            }
+			Duration duration = Duration.between(flight.getDateDepartTime(), flight.getDateArrivalTime());
+	        if (duration.toMinutes() <= departTime) { //need to see if Fteam can have duration as int (in minutes) or if provide departure and arrive LocalDateTime, we can create the variable in the loop
+	            shortDepart = flight;
+	            departTime = duration.toMinutes();
+	        }
 	    }
 		for (Flight flight : returnF) {
-				Duration duration = Duration.between(departureF[i].getDateDepartTime(), departureF[i].getDateArrivalTime());
-	            if (duration.toMinutes() <= returnTime) {
-	                shortFlight[1] = shortFlight[1];
-	                returnTime = duration.toMinutes();
-	            }
+			Duration duration = Duration.between(flight.getDateDepartTime(), flight.getDateArrivalTime());
+	        if (duration.toMinutes() <= returnTime) {
+	            shortReturn = flight;
+	            returnTime = duration.toMinutes();
 	        }
-	
-	    }   
-	    //return the array of flights
+	    }  
+		 
+		ObservableList<Flight> shortFlight = FXCollections.observableArrayList();
+	    shortFlight.add(shortDepart);
+    	shortFlight.add(shortReturn);
+
 	    return shortFlight;
 	}
 	
