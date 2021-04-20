@@ -24,13 +24,6 @@ class sController {
 		hotelC = new HotelController();
 		dayTourC = new TourController();
     }
-
-	 //Details for finding the convenient day tour. 
-    private void getTour(Parameters parameters) {
-    	 ObservableList<Tour> dTour =  dayTourC.searchTour(parameters);
-		 long voyageLength = parameters.getcheckIn().until(parameters.getcheckOut(), ChronoUnit.DAYS);//total length in days of the trip. was long online, not sure if can be int
-    }
-
 	
 	//method to find the flight details 
 	private ObservableList<Flight> searchCheapestFlights(Parameters parameters){
@@ -120,7 +113,23 @@ class sController {
 	    return bestRoom;
 	}
 
-	public void/*ObservableList<Package>*/ search(Parameters parameters) {
+	 //Details for finding the convenient day tour. 
+	private ObservableList<Tour> searchTours(Parameters parameters) {
+		ObservableList<Tour> dTour =  dayTourC.searchTour(parameters);
+		long voyageLength = parameters.getcheckIn().until(parameters.getcheckOut(), ChronoUnit.DAYS);//total length in days of the trip. was long online, not sure if can be int
+		ObservableList<Tour> tours = FXCollections.observableArrayList();
+		for (long i=0; i<voyageLength; i++){
+			double tourPrice = Double.POSITIVE_INFINITY;
+			Tour thisTour = null;
+			for(Tour tour: dTour){
+				if (tour.getPrice() <= tourPrice) thisTour = tour;
+			}
+			tours.add(thisTour);
+			
+		}
+	}
+
+	ObservableList<Package> search(Parameters parameters) {
 		long voyageLength = parameters.getcheckIn().until(parameters.getcheckOut(), ChronoUnit.DAYS);//total length in days of the trip. was long online, not sure if can be int
 		TourPackage pCheapestFlights;
 		TourPackage PShortesFlights;
@@ -130,11 +139,17 @@ class sController {
 	    ObservableList<Flight> shortFlight = searchShortestFlights(parameters);
 		budgetCheapF -= (cheapFlight.get(0).getBasePrice() + cheapFlight.get(1).getBasePrice());
 	    budgetShortF -= (shortFlight.get(0).getBasePrice() + shortFlight.get(1).getBasePrice());
-	    int low = parameters.getLowerPrice();
+	    
+		int low = parameters.getLowerPrice();
+
 		int[] price = new int[] {low,(int)budgetCheapF};
 		parameters.setPrice(price);
-		HotelRoom bestRoom = searchBestRoom(parameters);
+		HotelRoom cheapRoom = searchCheapestRoom(parameters);
 
+		price[1] = (int)budgetShortF;
+		parameters.setPrice(price);
+		HotelRoom bestRoom = searchBestRoom(parameters);
+		
 	}
-	
+
 }
