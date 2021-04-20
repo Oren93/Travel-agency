@@ -125,7 +125,10 @@ class sController {
 				if (tour.getPrice() <= tourPrice) {
 					for(TourDate tourDate : Tour.getDates()) {
 						LocalDate today = parameters.getcheckIn().plusDays(i);
-						if(today == tourDate.getDate().toLocalDate()) thisTour = tour;
+						if(today == tourDate.getDate().toLocalDate()) {
+							thisTour = tour;
+							tourPrice = tour.getPrice();
+						}
 					}
 				}
 			}
@@ -133,7 +136,8 @@ class sController {
 			dTour.remove(thisTour);
 
 			int low = parameters.getLowerPrice();
-			int[] price = new int[] {low,tourPrice};
+			int budget = parameters.getMaxPrice() - tourPrice;
+			int[] price = new int[] {low,budget};
 			parameters.setPrice(price);
 		}
 	}
