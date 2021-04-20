@@ -122,7 +122,7 @@ class sController {
 			int tourPrice = Integer.MAX_VALUE;
 			Tour thisTour = null;
 			for(Tour tour: dTour){
-				if (tour.getPrice() <= tourPrice) {
+				if (tour.getPrice() <= tourPrice && parameters.getMaxPrice() >= tour.getPrice()) {
 					for(TourDate tourDate : Tour.getDates()) {
 						LocalDate today = parameters.getcheckIn().plusDays(i);
 						if(today == tourDate.getDate().toLocalDate()) {
@@ -144,14 +144,18 @@ class sController {
 
 	ObservableList<Package> search(Parameters parameters) {
 		long voyageLength = parameters.getcheckIn().until(parameters.getcheckOut(), ChronoUnit.DAYS);//total length in days of the trip. was long online, not sure if can be int
-		TourPackage pCheapestFlights;
-		TourPackage PShortesFlights;
+		TourPackage pCheapestFlights = null;
+		TourPackage PShortesFlights = null;
 		double budgetCheapF = parameters.getMaxPrice();
 	    double budgetShortF = budgetCheapF;
-	    ObservableList<Flight> cheapFlight = searchCheapestFlights(parameters);
-	    ObservableList<Flight> shortFlight = searchShortestFlights(parameters);
-		budgetCheapF -= (cheapFlight.get(0).getBasePrice() + cheapFlight.get(1).getBasePrice());
-	    budgetShortF -= (shortFlight.get(0).getBasePrice() + shortFlight.get(1).getBasePrice());
+	    ObservableList<Flight> cheapFlights = searchCheapestFlights(parameters);
+	    ObservableList<Flight> shortFlights = searchShortestFlights(parameters);
+
+		int cheapFlightsPrice = (cheapFlight.get(0).getBasePrice() + cheapFlight.get(1).getBasePrice());
+		int shortFlightsPrice = (shortFlight.get(0).getBasePrice() + shortFlight.get(1).getBasePrice());
+
+		budgetCheapF -= cheapFlightsPrice;
+	    budgetShortF -= cheapFlightsPrice;
 	    
 		int low = parameters.getLowerPrice();
 
@@ -163,6 +167,33 @@ class sController {
 		parameters.setPrice(price);
 		HotelRoom bestRoom = searchBestRoom(parameters);
 
+		ObservableList<Tour> tours = searchTours(parameters);
+		
+		int toursPrice = 0;
+		for(Tour tour: tours) {
+			toursPrice += tour.getPrice();
+		}
+
+		int cheapPackagePrice = cheapFlightsPrice + cheapRoom.getPricePerNight() + toursPrice;
+		int bestPackagePrice = shortFlightsPrice + bestRoom.getPricePerNight() + toursPrice;
+		
+		TourPackage cheapestPackage = new TourPackage (cheapFlights, cheapRoom, 
+		tours, cheapPackagePrice)
+
+		TourPackage bestPackage = new TourPackage (shortFlights, bestRoom, 
+		tours, bestPackagePrice)
+
+		ObservableList<TourPackage> packages = FXCollections.observableArrayList();
+		packages.add(cheapestPackage);
+		packages.add(bestPackage);
+
+		return packages;
+	}
+
+	public static boolean bookPackage(TourPackage package, Passenger pass){
+		for(Tour tour: package.tours) {
+			confirmBooking(Package., TourDate tourDate, int noOfSeats, String customerName, String customerEmail);
+		}
 	}
 
 }

@@ -1,25 +1,23 @@
 package application;
 import daytour.*;
-//import 3H.*;
+import hotel.*;
 import flights.*;
 
 class TourPackage {
     //String packageID;
-    ObservableList<Tour> tours;
     ObservableList<Flight> flights;
-    //ObservableList<Room> rooms;
+    HotelRoom room;
+    ObservableList<Tour> tours;
     double price;
 
     /**
 	 * Constructor for an object type TourPackage
-	 * @param pID TourPackage ID number
 	 * @param t array of tours contained in the TourPackage 
 	 * @param f array of flights contained in the TourPackage
 	 * @param r array of rooms contained in the TourPackage
 	 * @param p array of price contained in the TourPackage
 	 */
-    TourPackage (String pID, Tour [] t, Flight [] f,
-     /*Room [] r,*/ double p)
+    TourPackage (Flight [] f, HotelRoom r, Tour [] t, double p)
     {
         //setPackageID(pID);
         setTours(t);
@@ -45,9 +43,9 @@ class TourPackage {
         else printError("there should be only 2 flights");
     }
 
-    //private void setRooms(ObservableList<Room>rs) {
-    //    rooms = rs;
-    //}
+    private void setRoom(HotelRoom rs) {
+        rooms = rs;
+    }
 
     private void setPrice(double pri) {
         price = pri;
@@ -66,9 +64,9 @@ class TourPackage {
         return flights;
     }
 
-    //ObservableList<Room> getRooms() {
-    //    return rooms,
-    //}
+    ObservableList<HotelRoom> getRooms() {
+        return rooms,
+    }
 
     double getPrice() {
         return price;
