@@ -102,6 +102,7 @@ public class Parameters {
 	 * @param e the error string, indicates where the error occured
 	 */
 	private void printError (String e) {
+		
 		System.out.println("an error message popup should appear here");
 		System.out.println("Error: "+ e);
 		

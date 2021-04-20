@@ -12,6 +12,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
@@ -21,6 +23,10 @@ import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -189,14 +195,14 @@ public class Controller implements Initializable {
 		accordion = new Accordion();
 		TitledPane [] tp = new TitledPane [packages.length];
 		double height = 70;
-		
-		for (TitledPane t : tp) {
-			Label lbl = new Label("foo \nbar");
+		int i = 0;
+		while (i < packages.length) {
+			Label lbl = new Label(i+ ". foo \nbar");
 			height += 70;
 			VBox content = new VBox(lbl);
-			t = new TitledPane("trip" , content);
-			
-	        accordion.getPanes().add(t);
+			tp[i] = new TitledPane(i+": trip" , content);
+	        accordion.getPanes().add(tp[i]);
+	        i++;
 		}
 		MainBox.setPrefHeight(height);
         TitledPane pane1 = new TitledPane("Boats" , new Label("Show all boats available"));
@@ -215,12 +221,38 @@ public class Controller implements Initializable {
 	private TextField fname, lname, kt;
 	@FXML
 	private void getDetails (ActionEvent e) {
-		String fNm, lNm, kenitala;
-		fNm = fname.getText();
-		lNm = lname.getText();
-		kenitala = kt.getText();
-		//flights.Passenger;// = new Passenger(fNm,lNm,kenitala);
-		flights.Passenger person = new flights.Passenger(kenitala,fNm,lNm);
+		int i = 1;
+		try {			
+			String fNm, lNm, kenitala;
+			fNm = fname.getText();
+			lNm = lname.getText();
+			kenitala = kt.getText();
+			//flights.Passenger;// = new Passenger(fNm,lNm,kenitala);
+			flights.Passenger person = new flights.Passenger(kenitala,fNm,lNm);
+			TitledPane tp = accordion.getExpandedPane();
+			//System.out.println(tp.getContentDisplay());
+			//System.out.println(tp.getContent().toString());
+			System.out.println(tp.getText());	
+			i++;
+		} catch (Error e2) {
+			i--;
+		}
+		System.out.println(i);
+		String er = "Error";
+		System.out.println(er);
+		Stage dialogStage = new Stage();
+		dialogStage.initModality(Modality.WINDOW_MODAL);
+
+		VBox vbox = new VBox(new Text(er), new Button("Ok."));
+		vbox.setAlignment(Pos.CENTER);
+		vbox.setPadding(new Insets(15));
+
+		dialogStage.setScene(new Scene(vbox));
+		dialogStage.show();
+		
+		
+		
+		
 	}
 	
 }
