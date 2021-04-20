@@ -154,30 +154,13 @@ public class Controller implements Initializable {
 		
 		
  		difficultyChoose.setItems(list);	
-		// Set Listener for the choiceBoxes
+		// Set Listener for the choiceBoxe
  		difficultyChoose.setOnAction((event) -> {
 		    int selectedIndex = difficultyChoose.getSelectionModel().getSelectedIndex();
 		    difficultyLevel = selectedIndex+Parameters.EASY;
 		});
 		choiceDeparture.setItems(airporList);
 		choiceDestination.setItems(travelDestination);	
-		
-		/*// This listener is useless
-		choiceDeparture.setOnAction((event) -> {
-		    int selectedIndex = choiceDeparture.getSelectionModel().getSelectedIndex();
-		    Object selectedItem = choiceDeparture.getSelectionModel().getSelectedItem();
-
-		    System.out.println("Selection made: [" + selectedIndex + "] " + selectedItem);
-		    System.out.println("   ChoiceBox.getValue(): " + choiceDeparture.getValue());
-		});
-		// this listener is also useless
-		choiceDestination.setOnAction((event) -> {
-		    int selectedIndex = choiceDestination.getSelectionModel().getSelectedIndex();
-		    Object selectedItem = choiceDestination.getSelectionModel().getSelectedItem();
-
-		    System.out.println("Selection made: [" + selectedIndex + "] " + selectedItem);
-		    System.out.println("   ChoiceBox.getValue(): " + choiceDestination.getValue());
-		});*/
 	}
 	
 	/*
