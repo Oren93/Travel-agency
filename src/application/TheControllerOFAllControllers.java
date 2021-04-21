@@ -42,15 +42,14 @@ public class TheControllerOFAllControllers {
 		initData(p);
 		int budget = p.getMaxPrice();
 		int tooCheap = p.getLowerPrice();
-		ObservableList<TourPackage> list = FXCollections.observableArrayList();
 		for (HotelRoom h : hotelRooms) {
 	        budget -= (days-1) * h.getPricePerNight();
 			for (Flight f : toFlights) {
+				System.out.println(h.getHotelName());
 				budget -= f.getBasePrice();
 				for (Flight r : returnFlights) {
 					budget -= r.getBasePrice();
 					trips = makeUniquePlan(p.getcheckIn().plusDays(1),budget,days);
-					 System.out.println(f.getBasePrice());
 					for (ObservableList<Tour> lis : trips)
 						TP.add(new TourPackage(f,r,h,lis));
 				}

@@ -199,7 +199,7 @@ public class Controller implements Initializable {
 	 */
 	private void renderView() {
 		accordion = new Accordion();
-		double height = MainBox.getHeight()+100*tourP.size();
+		double height =400+100*tourP.size();
 		int i = -1;
 		int j = tourP.size();
 		while (++i < j) {
@@ -271,9 +271,10 @@ public class Controller implements Initializable {
 				int j = i;
 			while (j < string.length() && Character.isDigit(string.charAt(j))) j++;
 			int index = Integer.parseInt(string.substring(i, j));	
-			TourPackage selected = tourP.get(index);
+			TourPackage selected = new TourPackage(null,null,null,null); // next line won't work othewise
+			selected = tourP.get(index);
 			
-			//boolean confirmed = TheControllerOFAllControllers.bookRoom("",searchParam, person);
+			//boolean confirmed = TheControllerOFAllControllers.bookRoom(selected,searchParam, person);
 			
 		} catch (Error e2) {
 		}
