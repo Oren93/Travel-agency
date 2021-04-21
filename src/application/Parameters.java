@@ -46,7 +46,7 @@ public class Parameters {
 			setCheckIn(dateRange[0]);
 			setCheckOut(dateRange[1]);
 		}
-		setLocations(to, from);
+		setLocations(from,to);
 	}
 	
 	/**
@@ -56,7 +56,7 @@ public class Parameters {
 		 price = new int [2];
 	}
 	
-	private void setPrice(int [] p) {
+	public void setPrice(int [] p) {
 		if (p[0]>0 && p[1]>p[0])
 			price = p;
 		else printError("Price error");
@@ -102,6 +102,7 @@ public class Parameters {
 	 * @param e the error string, indicates where the error occured
 	 */
 	private void printError (String e) {
+		
 		System.out.println("an error message popup should appear here");
 		System.out.println("Error: "+ e);
 		
@@ -153,7 +154,7 @@ public class Parameters {
 		return tostring;
 	}
 
-	private String extractCode(int s) {
+	public String extractCode(int s) {
 		switch(s) {
 		  case 1:
 			    return "Reykjav�k";

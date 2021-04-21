@@ -1,5 +1,6 @@
 package flights;
 
+import application.Parameters;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
@@ -9,15 +10,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class FlightController implements Initializable{
+public class FlightController{
 
    private DataFactory dataFactory = new DataFactory();
-   private ObservableList<Flight> flights = FXCollections.observableArrayList();
-   private ObservableList<Passenger> passengers = FXCollections.observableArrayList();
+   private static ObservableList<Flight> flights = FXCollections.observableArrayList();
 
-   @Override
-   public void initialize(URL location, ResourceBundle resources) {
-       passengers = dataFactory.getPassengers();
+   public FlightController() {
        flights = dataFactory.getFlights();
    }
 
@@ -45,7 +43,7 @@ public class FlightController implements Initializable{
            destination = p.getdepartLocation();
        }
 
-       for(Flight flight : DataFactory.getFlights()){
+       for(Flight flight : flights){
            if (date.equals(flight.getDateArrivalTime().toLocalDate()) &&
                    source == flight.getSource() &&
                    destination == flight.getDestination() &&
@@ -63,7 +61,7 @@ public class FlightController implements Initializable{
         ObservableList<Seat> availableSeats = FXCollections.observableArrayList();
 
         Flight ourFlight = null;
-        for(Flight flight : DataFactory.getFlights()){
+        for(Flight flight : flights){
             if(flight.getFlightNumber().equals(flightNumber)){
                 ourFlight = flight;
                 break;
@@ -91,7 +89,7 @@ public class FlightController implements Initializable{
         passenger.setBookings(bookings);
 
         Flight ourFlight = null;
-        for (Flight flight : DataFactory.getFlights()) {
+        for (Flight flight : flights) {
             if (flight.getFlightNumber().equals(flightNumber)) {
                 ourFlight = flight;
                 break;
