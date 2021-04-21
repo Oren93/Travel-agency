@@ -35,7 +35,7 @@ public class Utils {
      */
     public static String[] getUrlAndDatabase() {
         String srcPath = getSrcPath();
-        String dbName = srcPath + "daytour/data/tour.db";
+        String dbName = srcPath + "daytour/tour.db";
         String url = "jdbc:sqlite:" + dbName;
         return new String[]{url, dbName};
     }
