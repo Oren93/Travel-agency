@@ -214,7 +214,7 @@ class sController {
 		hotelC.bookRoom(p.getRoom().getHotelName(), p, pass);
 
 		for(int i=0; i<tourDates.size(); i++) {
-			ReservationController.confirmBooking(searchTours(para).get(i), tourDates.get(i), p.getgroupSize(), pass.getLastName(), String customerEmail);
+			ReservationController.confirmBooking(p.tours.get(i), tourDates.get(i), p.getgroupSize(), pass.getLastName(), String customerEmail);
 		}
 	}
 
