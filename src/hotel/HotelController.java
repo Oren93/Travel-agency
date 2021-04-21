@@ -27,12 +27,8 @@ public class HotelController implements Initializable {
             try {
             hotelrooms = FXCollections.observableArrayList(hotelRoomDB.findHotelRoom(p));
             //hotelrooms.add(hotelRoomDB.findHotelRoom(p));
-    		System.out.println("yay");
             } catch (ClassNotFoundException e) {
-        		System.out.println("nei");
             }
-
-    		System.out.println("sadgdsfhsdhtrg");
             return hotelrooms;
      }
      public static boolean bookRoom(String hotelName, Parameters p, Passenger pass){

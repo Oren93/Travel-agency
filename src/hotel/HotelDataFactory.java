@@ -49,8 +49,6 @@ public class HotelDataFactory
       Class.forName("org.sqlite.JDBC");
       connection = DriverManager.getConnection("jdbc:sqlite:src/hotel/Hotel.db");
       statement = connection.createStatement();
-      System.out.println("schema: "+connection.getSchema());
-      System.out.println("toString: "+connection.toString());
 
       /**
        * SELECT hotelCity, hotelName, roomType, roomNumber, occupants, price, hotelStar, hotelAddress, disability FROM Hotel H, Rooms R WHERE

@@ -12,19 +12,15 @@ import java.util.ResourceBundle;
 
 public class FlightController{
 
-   private DataFactory dataFactory = new DataFactory();
+   private static DataFactory dataFactory = new DataFactory();
    private static ObservableList<Flight> flights = FXCollections.observableArrayList();
-
-   public FlightController() {
-       flights = dataFactory.getFlights();
-   }
-
 
     //takes in the parameters and boolean isTo, 
     //isTo is true if searching for the flights from source to destination
     //isTo is false if searching for flights from destination to source
    public static ObservableList<Flight> getAvailableFlights(Parameters p, boolean isTo){
-       ObservableList<Flight> availableFlights = FXCollections.observableArrayList();
+       flights = dataFactory.getFlights();
+	   ObservableList<Flight> availableFlights = FXCollections.observableArrayList();
 
        int groupSize = p.getgroupSize();
        int source = 0;

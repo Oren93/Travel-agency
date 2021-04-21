@@ -35,6 +35,7 @@ class TourPackage {
     TourPackage (Flight from, Flight to, HotelRoom h,
     		ObservableList<Tour> d)
     {
+    	flights = FXCollections.observableArrayList();
     	flights.add(from);
     	flights.add(to);
     	room = h;

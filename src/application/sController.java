@@ -107,33 +107,37 @@ class sController {
 	}
 
 	 //Details for finding the convenient day tour. 
-	private ObservableList<Tour> searchTours(Parameters parameters) {
-		ObservableList<Tour> dTour =  dayTourC.searchTour(parameters);
-		long voyageLength = parameters.getcheckIn().until(parameters.getcheckOut(), ChronoUnit.DAYS);//total length in days of the trip. was long online, not sure if can be int
-		ObservableList<Tour> tours = FXCollections.observableArrayList();
-		for (long i=0; i<voyageLength; i++){
-			int tourPrice = Integer.MAX_VALUE;
-			Tour thisTour = null;
-			for(Tour tour: dTour){
-				if (tour.getPrice() <= tourPrice && parameters.getMaxPrice() >= tour.getPrice()) {
-					for(TourDate tourDate : Tour.getDates()) {
-						LocalDate today = parameters.getcheckIn().plusDays(i);
-						if(today == tourDate.getDate().toLocalDate()) {
-							thisTour = tour;
-							tourPrice = tour.getPrice();
+		private ObservableList<Tour> searchTours(Parameters parameters) {
+			ObservableList<Tour> dTour =  dayTourC.searchTour(parameters);
+			long voyageLength = parameters.getcheckIn().until(parameters.getcheckOut(), ChronoUnit.DAYS);//total length in days of the trip. was long online, not sure if can be int
+			ObservableList<Tour> tours = FXCollections.observableArrayList();
+			for (long i=0; i<voyageLength; i++){
+				int tourPrice = Integer.MAX_VALUE;
+				Tour thisTour = null;
+	            TourDate thisTourDate = null;
+				for(Tour tour: dTour){
+					if (tour.getPrice() <= tourPrice && parameters.getMaxPrice() >= tour.getPrice()) {
+						for(TourDate tourDate : Tour.getDates()) {
+							LocalDate today = parameters.getcheckIn().plusDays(i);
+							if(today == tourDate.getDate().toLocalDate()) {
+								thisTour = tour;
+								tourPrice = tour.getPrice();
+	                            thisTourDate = tourDate;
+							}
 						}
 					}
 				}
+				tours.add(thisTour);
+				dTour.remove(thisTour);
+	            tourDates.add(thisTourDate);
+				int low = parameters.getLowerPrice();
+				int budget = parameters.getMaxPrice() - tourPrice;
+				int[] price = new int[] {low,budget};
+				parameters.setPrice(price);
 			}
-			tours.add(thisTour);
-			dTour.remove(thisTour);
-
-			int low = parameters.getLowerPrice();
-			int budget = parameters.getMaxPrice() - tourPrice;
-			int[] price = new int[] {low,budget};
-			parameters.setPrice(price);
 		}
-	}
+
+
 
 	ObservableList<Package> search(Parameters parameters) {
 		long voyageLength = parameters.getcheckIn().until(parameters.getcheckOut(), ChronoUnit.DAYS);//total length in days of the trip. was long online, not sure if can be int

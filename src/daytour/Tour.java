@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * Object that represents a day tour.
  */
 public class Tour {
-    private ObservableList<TourDate> dates;
+    private static ObservableList<TourDate> dates;
     private SimpleIntegerProperty tourId;
     private SimpleStringProperty tourName;
     private SimpleStringProperty description;
@@ -81,7 +81,7 @@ public class Tour {
         validTour = true;
     }
 
-    public ObservableList<TourDate> getDates(){ return dates; }
+    public static ObservableList<TourDate> getDates(){ return dates; }
 
     public int getTourId() {return tourId.get();}
 
