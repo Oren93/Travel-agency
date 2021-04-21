@@ -16,6 +16,10 @@ class TourPackage {
     private LocalDate dayOne;
     private LocalDate LastDay;
 
+    TourPackage ()
+    {
+    	
+    }
     /**
 	 * Constructor for an object type TourPackage
 	 * @param t array of tours contained in the TourPackage 

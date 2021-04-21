@@ -4,6 +4,7 @@
 package application;
 import daytour.*;
 import flights.Flight;
+import flights.Passenger;
 import hotel.HotelController;
 import hotel.HotelRoom;
 
@@ -127,7 +128,7 @@ public class Controller implements Initializable {
 	ObservableList<String> list = FXCollections.observableArrayList("Easy","Moderate","Hard");
 	public ChoiceBox<String> choiceDeparture;
 	ObservableList<String> airporList = FXCollections.observableArrayList(
-			"Reykjavï¿½k","Akureyri","ï¿½safjï¿½rï¿½ur","Egilstaï¿½ir");
+			"Reykjavík","Akureyri","Ísafjörður","Egilstaðir");
 	public ChoiceBox<String> choiceDestination;
 	ObservableList<String> travelDestination = FXCollections.observableArrayList(
 			"South-west","North","west fjords","East fjords");
@@ -199,7 +200,7 @@ public class Controller implements Initializable {
 	 */
 	private void renderView() {
 		accordion = new Accordion();
-		double height =400+100*tourP.size();
+		double height = MainBox.getHeight()+100*tourP.size();
 		int i = -1;
 		int j = tourP.size();
 		while (++i < j) {
@@ -207,6 +208,8 @@ public class Controller implements Initializable {
 			packageInfo += HotelInfo(tourP.get(i).getRoom());
 			packageInfo += TripInfo(tourP.get(i).getTours());
 			Label lbl = new Label(packageInfo);
+			lbl.setMaxWidth(600);
+			lbl.setWrapText(true);
 			VBox content = new VBox(lbl);
 			TitledPane tp = new TitledPane("Package "+i+". Our offer: "+tourP.get(i).getPrice()+" ISK" , content);
 	        accordion.getPanes().add(tp);
@@ -271,12 +274,12 @@ public class Controller implements Initializable {
 				int j = i;
 			while (j < string.length() && Character.isDigit(string.charAt(j))) j++;
 			int index = Integer.parseInt(string.substring(i, j));	
-			TourPackage selected = new TourPackage(null,null,null,null); // next line won't work othewise
-			selected = tourP.get(index);
-			
-			boolean confirmed = TheControllerOFAllControllers.bookPackage(selected,searchParam, person);
-			
+			TourPackage selected = new TourPackage();
+			selected = tourP.get(index);		
+			boolean confirmed = TheControllerOFAllControllers.bookPackage(selected,person,searchParam );
+			System.out.println("Booking Confirmed!");
 		} catch (Error e2) {
+			System.out.println("booking denied, incorrect input");
 		}
 	}
 	

@@ -6,6 +6,9 @@ package application;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import daytour.*;
 import flights.*;
@@ -128,23 +131,26 @@ public class TheControllerOFAllControllers {
 		 return matrix;
 	}
 
-	boolean bookPackage(TourPackage p, Passenger pass, Parameters para){
+	static boolean bookPackage(TourPackage p, Passenger pass, Parameters para){
 		boolean disability = false;
-		if (para.getdifficulty() == 10) disability = true;
-		ObservableList<Seat> availableSeatsDepart = getAvailableSeats(p.getFlights().get(0));
-		ObservableList<Seat> availableSeatsReturn = getAvailableSeats(p.getFlights().get(1));
+		if (para.getdifficulty() == Parameters.HANDICAP) disability = true;
+		//ObservableList<Seat> availableSeatsDepart = FXCollections.observableArrayList();
+		//ObservableList<Seat> availableSeatsReturn = FXCollections.observableArrayList();
+		ArrayList<Seat> availableSeatsDepart = new ArrayList<Seat>(FlightController.getAvailableSeats(p.getFlights().get(0).getFlightNumber()));
+		ArrayList<Seat> availableSeatsReturn = new ArrayList<Seat>(FlightController.getAvailableSeats(p.getFlights().get(0).getFlightNumber()));
+		//availableSeatsDepart = FlightController.getAvailableSeats(p.getFlights().get(0).getFlightNumber());
+		//availableSeatsReturn = FlightController.getAvailableSeats(p.getFlights().get(1).getFlightNumber());
 
 		ObservableList<Seat> SeatsDepart = FXCollections.observableArrayList();
 		ObservableList<Seat> SeatsReturn = FXCollections.observableArrayList();
-
-		for(int i = 0; i<para.getgroupSize(); i++) {
-			SeatsDepart.add(availableSeatsDepart.get(i));
-			SeatsReturn.add(availableSeatsReturn.get(i));
-		}
-
-		flightC.bookFlight(p.getFlights().get(0).getFlightNumber(), SeatsDepart, pass, 0, 0, 0, 0, disability);
-		flightC.bookFlight(p.getFlights().get(1).getFlightNumber(), SeatsReturn, pass, 0, 0, 0, 0, disability);
-
+				
+		List<Seat> SelectDepSeat = availableSeatsDepart.subList(0, para.getgroupSize());
+		List<Seat> SelectRetSeat = availableSeatsReturn.subList(0, para.getgroupSize());
+		
+		
+		FlightController.bookFlight(p.getFlights().get(0).getFlightNumber(), SelectDepSeat, pass, 0, 0, 0, 0, disability);
+		FlightController.bookFlight(p.getFlights().get(1).getFlightNumber(), SelectRetSeat, pass, 0, 0, 0, 0, disability);
+		
 		hotelC.bookRoom(p.getRoom().getHotelName(), p, pass);
 
 		String customerEmail = "";
