@@ -3,6 +3,7 @@
  */
 package application;
 import daytour.*;
+import flights.Flight;
 import hotel.HotelController;
 import hotel.HotelRoom;
 
@@ -113,7 +114,7 @@ public class Controller implements Initializable {
 		//System.out.println("hotelRooms.isEmpty() - "+hotelRooms.isEmpty());
 		//System.out.println("hotelRooms.size() - "+hotelRooms.size());
 		//System.out.println("hotelRooms.toString() - "+hotelRooms.toString());
-		tp = TheControllerOFAllControllers.findDeals(searchParam);
+		//tp = TheControllerOFAllControllers.findDeals(searchParam);
 		renderView(hotelRooms);
 		
 		}
@@ -206,7 +207,7 @@ public class Controller implements Initializable {
 		int i = -1;
 		int j = hr.size();
 		while (++i < j) {
-			String packageInfo = PackageInfo(hr.get(i));
+			String packageInfo = HotelInfo(hr.get(i));
 			Label lbl = new Label(packageInfo);
 			VBox content = new VBox(lbl);
 			TitledPane tp = new TitledPane(i+". Hotel "+hr.get(i).getHotelName() , content);
@@ -223,7 +224,7 @@ public class Controller implements Initializable {
  
         PackagePage.getChildren().addAll(accordion);
 	}
-	private String PackageInfo(HotelRoom htl) {
+	private String HotelInfo(HotelRoom htl) {
 		String st = "Accomodation:\n";
 		st = st +"Hotel name:\t"+ htl.getHotelName();
 		st = st +"\nRate:\t \t"+ htl.getHotelStar()+" stars";
@@ -232,7 +233,31 @@ public class Controller implements Initializable {
 		st = st +"\nRoom type:\t \t"+ htl.getRoomtype();
 		return st;
 	}
+	private String TripInfo(ObservableList<Tour> t) {
+		String st = "Activities:\n";
+		int days = t.size();
+		for (int i = 0 ; i < days ; i++) {
+			st += "Day "+(i+1)+": "+t.get(i).getTourName()+"\nAbout the tour:\n"
+					+t.get(i).getDescription();
+			if (i != days-1)
+				st += "\n";
+		}
+		return st;
+	}
 
+	private String FlightInfo(ObservableList<Flight> f) {
+		String st = "Flight details:\n";
+		st += "From "+Parameters.extractCode(f.get(0).getSource())+" to ";
+		st += Parameters.extractCode(f.get(0).getDestination())+"\n";
+		st += "Departs on \t"+f.get(0).getDateDepartTime().toString()+", ";
+		st += "arrives on \t"+f.get(0).getDateArrivalTime().toString()+"\n";
+		st += "Return Flight details:\n";
+		st += "From "+Parameters.extractCode(f.get(1).getSource())+" to ";
+		st += Parameters.extractCode(f.get(1).getDestination())+"\n";
+		st += "Departs on \t"+f.get(1).getDateDepartTime().toString()+", ";
+		st += "arrives on \t"+f.get(1).getDateArrivalTime().toString()+"\n";
+		return st;
+	}
 	@FXML
 	private TextField fname, lname, kt;
 	@FXML
