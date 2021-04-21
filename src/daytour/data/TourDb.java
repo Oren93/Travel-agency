@@ -36,7 +36,7 @@ public class TourDb implements MakeConnection {
         try {
             conn = DriverManager.getConnection(url);
         } catch(SQLException e) {
-            throw new IllegalArgumentException("Could not connect to database");
+            throw new IllegalArgumentException("Could not connect to database with url: " + url);
         }
     }
 
