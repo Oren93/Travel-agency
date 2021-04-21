@@ -27,7 +27,7 @@ public class TheControllerOFAllControllers {
 	private static void initData (Parameters p) {
 		hotelRooms = HotelController.GetHotelRooms(p); 
 		toFlights = FlightController.getAvailableFlights(p, true); 
-		returnFlights = FlightController.getAvailableFlights(p, true); 
+		returnFlights = FlightController.getAvailableFlights(p, false); 
 		tours = TourController.searchTour(p); 
 	}
 	
