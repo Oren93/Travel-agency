@@ -128,6 +128,7 @@ public class TheControllerOFAllControllers {
 		 //System.out.println("Package found: "+matrix.size());
 		 return matrix;
 	}
+
 	boolean bookPackage(TourPackage p, Passenger pass, Parameters para){
 		boolean disability = false;
 		if (para.getdifficulty() == 10) disability = true;
@@ -149,8 +150,11 @@ public class TheControllerOFAllControllers {
 
 		String customerEmail = "";
 
-		for(int i=0; i<tourDates.size(); i++) { //tourDates needs to be kept somewhere
-			ReservationController.confirmBooking(p.tours.get(i), tourDates.get(i), p.getgroupSize(), pass.getLastName(), customerEmail);
+		for(Tour tour in p.getTours()) {
+			for (TourDate date in p.getTours().getDates()) {
+				if(date.getDate().toLocalDate().isAfter(p.getcheckIn()) && date.getDate().toLocalDate().isBefore(p.getcheckOut()))
+					ReservationController.confirmBooking(tour, date, p.getgroupSize(), pass.getLastName(), customerEmail);
+			}
 		}
 	}
 }
