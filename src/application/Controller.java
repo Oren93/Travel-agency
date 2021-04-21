@@ -48,7 +48,7 @@ public class Controller implements Initializable {
 	final private int MAX_PRICE = 1000000;
 	final private int GROUOP_SIZE = Parameters.MAXGROUP;
 	Parameters searchParam;
-	
+	ObservableList<TourPackage> tourP;
 	private boolean handicappedAssistanceRequired = false;
 	private int difficultyLevel;
 	
@@ -70,17 +70,13 @@ public class Controller implements Initializable {
 		int priceRange [] = new int[2];
 		int groupS;
 		LocalDate dateRange [] = new LocalDate[2];
-		//SpinnerValueFactory <Integer> sf; 
-		try {/*
+		try {
 			priceRange[0] = priceMin.getValueFactory().getValue();
 			priceRange[1] = priceMax.getValueFactory().getValue();
 			groupS = GroupSize.getValueFactory().getValue();
 
 			dateRange[0] = fromDate.getValue();
 			dateRange[1] = toDate.getValue();
-			// Tester: -----------------------------------------------------
-			System.out.println(dateRange[0].getDayOfMonth()+"/"+dateRange[0].getMonthValue());
-			System.out.println(dateRange[1].getDayOfMonth()+"/"+dateRange[1].getMonthValue());
 
 			int selectedAirportDeparture = choiceDeparture.getSelectionModel().getSelectedIndex()+1;
 			int selectedAirportDestination = choiceDestination.getSelectionModel().getSelectedIndex()+1;
@@ -89,33 +85,34 @@ public class Controller implements Initializable {
 			searchParam = new Parameters (difficultyLevel,
 					priceRange, groupS, dateRange,selectedAirportDeparture, selectedAirportDestination);
 			System.out.println(searchParam.toString()); // temporary, for testing purposes
-			TourController tc = new TourController();*/
+			//TourController tc = new TourController();
+			//ObservableList<TourPackage> tp = FXCollections.observableArrayList();
+			tourP = TheControllerOFAllControllers.findDeals(searchParam);
+			renderView();
+			ConfirmPage.setVisible(true);
 			/* HERE need to call a search mehtod with the Parameters object searchParam */
 			//ObservableList<Tour> tours = tc.searchTour(searchParam);
 			//renderView(tours);
 			
 		} catch (Error e1) {
+			ConfirmPage.setVisible(false);
 			/* Need to pop up a window to indicate what is the error */		
 		}
 		finally{ // To delete later!!!!!!!!!!!!!!!!!
 		// These following to lines are temporary. ConfirmPage should appear either 
 		// after the search result yields results or after selecting a package 
-		boolean visibile = ConfirmPage.isVisible();
+		/*boolean visibile = ConfirmPage.isVisible();
 		ConfirmPage.setVisible(!visibile);
-		LocalDate foo [] = new LocalDate[] {LocalDate.now().plusDays(1),LocalDate.now().plusDays(8)};
-		Parameters searchParam = new Parameters (10,
+		LocalDate foo [] = new LocalDate[] {LocalDate.now().plusDays(2),LocalDate.now().plusDays(9)};
+		Parameters searchParam = new Parameters (11,
 				new int [] {1000,1000000}, 1, foo, 2,1);
 		ObservableList<HotelRoom> hotelRooms = FXCollections.observableArrayList();
 		TourController tc = new TourController();
 		ObservableList<TourPackage> tp = FXCollections.observableArrayList();
-		//ObservableList<Tour> tours = tc.searchTour(searchParam);
 		System.out.println(searchParam.toString()); // temporary, for testing purposes
 		hotelRooms = HotelController.GetHotelRooms(searchParam); 
-		//System.out.println("hotelRooms.isEmpty() - "+hotelRooms.isEmpty());
-		//System.out.println("hotelRooms.size() - "+hotelRooms.size());
-		//System.out.println("hotelRooms.toString() - "+hotelRooms.toString());
-		//tp = TheControllerOFAllControllers.findDeals(searchParam);
-		renderView(hotelRooms);
+		tp = TheControllerOFAllControllers.findDeals(searchParam);
+		renderView(tp);*/
 		
 		}
 	}
@@ -200,26 +197,20 @@ public class Controller implements Initializable {
 	 * Render the view according to the search results
 	 * @param ol Observable list of tour packages
 	 */
-	private void renderView(ObservableList<HotelRoom> hr) {
+	private void renderView() {
 		accordion = new Accordion();
-		//TitledPane [] tp = new TitledPane [ol.size()];
-		double height = MainBox.getHeight()+70*hr.size();
+		double height = MainBox.getHeight()+100*tourP.size();
 		int i = -1;
-		int j = hr.size();
+		int j = tourP.size();
 		while (++i < j) {
-			String packageInfo = HotelInfo(hr.get(i));
+			String packageInfo = FlightInfo(tourP.get(i).getFlights());
+			packageInfo += HotelInfo(tourP.get(i).getRoom());
+			packageInfo += TripInfo(tourP.get(i).getTours());
 			Label lbl = new Label(packageInfo);
 			VBox content = new VBox(lbl);
-			TitledPane tp = new TitledPane(i+". Hotel "+hr.get(i).getHotelName() , content);
+			TitledPane tp = new TitledPane("Package "+i+". Our offer: "+tourP.get(i).getPrice()+" ISK" , content);
 	        accordion.getPanes().add(tp);
-/*			ol.forEach((String t) -> {
-				System.out.println("bla bla bla "+t);
-				Label lbl = new Label(ol.indexOf(t)+". foo \nbar");
-				VBox content = new VBox(lbl);
-				TitledPane tp = new TitledPane(t+": trip" , content);
-		        accordion.getPanes().add(tp);
-			});
-*/		}
+	    }
 		MainBox.setPrefHeight(height);
  
         PackagePage.getChildren().addAll(accordion);
@@ -230,7 +221,7 @@ public class Controller implements Initializable {
 		st = st +"\nRate:\t \t"+ htl.getHotelStar()+" stars";
 		st = st +"\nLocation:\t \t"+ htl.getCity();
 		st = st +"\nPrice per night:\t \t"+ htl.getPricePerNight()+" ISK";
-		st = st +"\nRoom type:\t \t"+ htl.getRoomtype();
+		st = st +"\nRoom type:\t \t"+ htl.getRoomtype()+"\n";
 		return st;
 	}
 	private String TripInfo(ObservableList<Tour> t) {
@@ -274,23 +265,18 @@ public class Controller implements Initializable {
 			kenitala = kt.getText();
 			flights.Passenger person = new flights.Passenger(kenitala,fNm,lNm);
 			TitledPane tp = accordion.getExpandedPane();
-			System.out.println(tp.getText());	
-			boolean confirmed = HotelController.bookRoom("",searchParam, person);
+			String string = tp.getText();	
+			int i = 0;
+			while (i < string.length() && !Character.isDigit(string.charAt(i))) i++;
+				int j = i;
+			while (j < string.length() && Character.isDigit(string.charAt(j))) j++;
+			int index = Integer.parseInt(string.substring(i, j));	
+			TourPackage selected = tourP.get(index);
+			
+			//boolean confirmed = TheControllerOFAllControllers.bookRoom("",searchParam, person);
+			
 		} catch (Error e2) {
 		}
-		/*
-		String er = "Error";
-		System.out.println(er);
-		Stage dialogStage = new Stage();
-		dialogStage.initModality(Modality.WINDOW_MODAL);
-
-		VBox vbox = new VBox(new Text(er), new Button("Ok."));
-		vbox.setAlignment(Pos.CENTER);
-		vbox.setPadding(new Insets(15));
-
-		dialogStage.setScene(new Scene(vbox));
-		dialogStage.show();	
-		*/	
 	}
 	
 }

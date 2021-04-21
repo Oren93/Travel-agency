@@ -58,9 +58,7 @@ public class TheControllerOFAllControllers {
 		}
 		int k = TP.size();
 		for (int i = 0 ; i < k ; i++) {
-			 System.out.println(i+". i TESTING...........");
 			for (int j = i+1 ;j < k ; ) {
-				 System.out.println(j+". j TESTING...........");
 				if (TP.get(i).equals(TP.get(j))) {
 					TP.remove(j);
 					k--;
