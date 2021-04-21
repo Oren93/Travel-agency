@@ -74,6 +74,38 @@ public class TheControllerOFAllControllers {
 		}*/
 		return TP;		
 	}
+
+	
+	 //Details for finding the convenient day tour. 
+		private static ObservableList<Tour> searchTours(LocalDate d,int budget, int days) {
+			ObservableList<Tour> dTour =  tours;
+			long voyageLength = (long) days;// = parameters.getcheckIn().until(parameters.getcheckOut(), ChronoUnit.DAYS);//total length in days of the trip. was long online, not sure if can be int
+			ObservableList<Tour> toReturn = FXCollections.observableArrayList();
+			//ObservableList<TourDate> tourDates = FXCollections.observableArrayList();
+			for (long i=0; i<voyageLength; i++){
+				int tourPrice = Integer.MAX_VALUE;
+				Tour thisTour = null;
+	            //TourDate thisTourDate = null;
+				for(Tour tour: dTour){
+					System.out.println("for");
+					if (tour.getPrice() <= tourPrice && budget >= tour.getPrice()) {
+						System.out.println("if1");
+						thisTour = tour;
+						tourPrice = tour.getPrice();
+	                    //thisTourDate = tourDate;
+					}
+				}
+				toReturn.add(thisTour);
+				dTour.remove(thisTour);
+	            //tourDates.add(thisTourDate);
+				int low =0;
+				int budg = budget - tourPrice;
+				int[] price = new int[] {low,budget};
+				//parameters.setPrice(price);
+			}
+			return toReturn;
+		}
+
 	private static ObservableList<ObservableList<Tour>> makeUniquePlan(LocalDate d,int budget, int days){
 		 int lim = tours.size();
 		 ObservableList<ObservableList<Tour>> matrix = FXCollections.<ObservableList<Tour>>observableArrayList();
@@ -125,7 +157,7 @@ public class TheControllerOFAllControllers {
 		String customerEmail = "";
 
 		for(int i=0; i<tourDates.size(); i++) { //tourDates needs to be kept somewhere
-			ReservationController.confirmBooking(searchTours(para).get(i), tourDates.get(i), p.getgroupSize(), pass.getLastName(), customerEmail);
+			ReservationController.confirmBooking(p.tours.get(i), tourDates.get(i), p.getgroupSize(), pass.getLastName(), customerEmail);
 		}
 	}
 }
