@@ -1,4 +1,3 @@
-// Forritið má þýða og keyra svona : Windows:
 //    
 //   java -cp .;sqlite-jdbc-3.32.3.2.jar HotelDataFactory
 // á Unix:
@@ -48,8 +47,10 @@ public class HotelDataFactory
     {
       // create a database connection
       Class.forName("org.sqlite.JDBC");
-      connection = DriverManager.getConnection("jdbc:sqlite:Hotel.db");
+      connection = DriverManager.getConnection("jdbc:sqlite:src/hotel/Hotel.db");
       statement = connection.createStatement();
+      System.out.println("schema: "+connection.getSchema());
+      System.out.println("toString: "+connection.toString());
 
       /**
        * SELECT hotelCity, hotelName, roomType, roomNumber, occupants, price, hotelStar, hotelAddress, disability FROM Hotel H, Rooms R WHERE

@@ -70,7 +70,7 @@ public class Controller implements Initializable {
 		int groupS;
 		LocalDate dateRange [] = new LocalDate[2];
 		//SpinnerValueFactory <Integer> sf; 
-		try {
+		try {/*
 			priceRange[0] = priceMin.getValueFactory().getValue();
 			priceRange[1] = priceMax.getValueFactory().getValue();
 			groupS = GroupSize.getValueFactory().getValue();
@@ -88,8 +88,8 @@ public class Controller implements Initializable {
 			searchParam = new Parameters (difficultyLevel,
 					priceRange, groupS, dateRange,selectedAirportDeparture, selectedAirportDestination);
 			System.out.println(searchParam.toString()); // temporary, for testing purposes
+			TourController tc = new TourController();*/
 			/* HERE need to call a search mehtod with the Parameters object searchParam */
-			TourController tc = new TourController();
 			//ObservableList<Tour> tours = tc.searchTour(searchParam);
 			//renderView(tours);
 			
@@ -105,12 +105,16 @@ public class Controller implements Initializable {
 		Parameters searchParam = new Parameters (10,
 				new int [] {1000,1000000}, 1, foo, 2,1);
 		ObservableList<HotelRoom> hotelRooms = FXCollections.observableArrayList();
-		hotelRooms = HotelController.GetHotelRooms(searchParam); 
-		System.out.println(hotelRooms.isEmpty());
 		TourController tc = new TourController();
-		ObservableList<String> list = FXCollections.observableArrayList("Easy","Moderate","Hard");
+		ObservableList<TourPackage> tp = FXCollections.observableArrayList();
 		//ObservableList<Tour> tours = tc.searchTour(searchParam);
-		renderView(list);
+		System.out.println(searchParam.toString()); // temporary, for testing purposes
+		hotelRooms = HotelController.GetHotelRooms(searchParam); 
+		//System.out.println("hotelRooms.isEmpty() - "+hotelRooms.isEmpty());
+		//System.out.println("hotelRooms.size() - "+hotelRooms.size());
+		//System.out.println("hotelRooms.toString() - "+hotelRooms.toString());
+		tp = TheControllerOFAllControllers.findDeals(searchParam);
+		renderView(hotelRooms);
 		
 		}
 	}
@@ -195,16 +199,17 @@ public class Controller implements Initializable {
 	 * Render the view according to the search results
 	 * @param ol Observable list of tour packages
 	 */
-	private void renderView(ObservableList <String> ol) {
+	private void renderView(ObservableList<HotelRoom> hr) {
 		accordion = new Accordion();
 		//TitledPane [] tp = new TitledPane [ol.size()];
-		double height = MainBox.getHeight()+70*ol.size();
+		double height = MainBox.getHeight()+70*hr.size();
 		int i = -1;
-		int j = ol.size();
+		int j = hr.size();
 		while (++i < j) {
-			Label lbl = new Label(i+". foo \nbar");
+			String packageInfo = PackageInfo(hr.get(i));
+			Label lbl = new Label(packageInfo);
 			VBox content = new VBox(lbl);
-			TitledPane tp = new TitledPane(i+". "+": trip"+(ol.get(i)) , content);
+			TitledPane tp = new TitledPane(i+". Hotel "+hr.get(i).getHotelName() , content);
 	        accordion.getPanes().add(tp);
 /*			ol.forEach((String t) -> {
 				System.out.println("bla bla bla "+t);
@@ -218,7 +223,15 @@ public class Controller implements Initializable {
  
         PackagePage.getChildren().addAll(accordion);
 	}
-	
+	private String PackageInfo(HotelRoom htl) {
+		String st = "Accomodation:\n";
+		st = st +"Hotel name:\t"+ htl.getHotelName();
+		st = st +"\nRate:\t \t"+ htl.getHotelStar()+" stars";
+		st = st +"\nLocation:\t \t"+ htl.getCity();
+		st = st +"\nPrice per night:\t \t"+ htl.getPricePerNight()+" ISK";
+		st = st +"\nRoom type:\t \t"+ htl.getRoomtype();
+		return st;
+	}
 
 	@FXML
 	private TextField fname, lname, kt;

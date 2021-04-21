@@ -13,22 +13,16 @@ import hotel.*;
 
 
 class sController {
-	
-	private FlightController flightC;
-	private HotelController hotelC;
-	private TourController dayTourC;
-	
-	//constructor
-    sController() {
-		flightC = new FlightController();
-		hotelC = new HotelController();
-		dayTourC = new TourController();
-    }
+	ObservableList<HotelRoom> hotelRooms = FXCollections.observableArrayList();
+	ObservableList<Flight> toFlights = FXCollections.observableArrayList();
+	ObservableList<Flight> returnFlights = FXCollections.observableArrayList();
+	ObservableList<Tour> tours = FXCollections.observableArrayList();
+	//hotelRooms = HotelController.GetHotelRooms(searchParam); 
 	
 	//method to find the flight details 
 	private ObservableList<Flight> searchCheapestFlights(Parameters parameters){
-	    ObservableList<Flight> departureF = flightC.getAvailableFlights(parameters, true); //boolean variable true if flight is dearture to destination
-	    ObservableList<Flight> returnF = flightC.getAvailableFlights(parameters, false); //will return an Observable list, not arrray, need to check that
+	    toFlights = FlightController.getAvailableFlights(parameters, true); //boolean variable true if flight is dearture to destination
+	    returnFlights = FlightController.getAvailableFlights(parameters, false); 
 	
 	    double departPrice = Double.POSITIVE_INFINITY;
 	    double returnPrice = Double.POSITIVE_INFINITY;
@@ -36,15 +30,15 @@ class sController {
 		Flight cheapDepart = null;
 		Flight cheapReturn = null;
 
-	    for (Flight flight : departureF) {
-			if (flight.getBasePrice() <= departPrice) {
+	    for (Flight flight : toFlights) {
+			if (flight.getBasePrice() < departPrice) {
 				cheapDepart = flight;
 				departPrice = flight.getBasePrice();
 			}
 		}
 
-		for (Flight flight : returnF) {
-			if (flight.getBasePrice() <= returnPrice) {
+		for (Flight flight : returnFlights) {
+			if (flight.getBasePrice() < returnPrice) {
 				cheapReturn =flight;
 				returnPrice = flight.getBasePrice();
 			}
@@ -58,26 +52,22 @@ class sController {
 	}
 
 	private ObservableList<Flight> searchShortestFlights(Parameters parameters){
-		ObservableList<Flight> departureF = flightC.getAvailableFlights(parameters, true); //boolean variable true if flight is dearture to destination
-	    ObservableList<Flight> returnF = flightC.getAvailableFlights(parameters, false); //will return an Observable list, not arrray, need to check that
-	    
-
 		double departTime = Double.POSITIVE_INFINITY;
 	    double returnTime = Double.POSITIVE_INFINITY;
 		
 		Flight shortDepart = null;
 		Flight shortReturn = null;
 
-	    for (Flight flight : departureF) {
+	    for (Flight flight : toFlights) {
 			Duration duration = Duration.between(flight.getDateDepartTime(), flight.getDateArrivalTime());
-	        if (duration.toMinutes() <= departTime) { //need to see if Fteam can have duration as int (in minutes) or if provide departure and arrive LocalDateTime, we can create the variable in the loop
+	        if (duration.toMinutes() < departTime) {
 	            shortDepart = flight;
 	            departTime = duration.toMinutes();
 	        }
 	    }
-		for (Flight flight : returnF) {
+		for (Flight flight : returnFlights) {
 			Duration duration = Duration.between(flight.getDateDepartTime(), flight.getDateArrivalTime());
-	        if (duration.toMinutes() <= returnTime) {
+	        if (duration.toMinutes() < returnTime) {
 	            shortReturn = flight;
 	            returnTime = duration.toMinutes();
 	        }
@@ -93,18 +83,21 @@ class sController {
 	//method to find cheapest room for each day of trip 
 	private HotelRoom searchCheapestRoom(Parameters parameters){
 		// create array that holds in the available rooms 
-		ObservableList<HotelRoom> Rooms = hotelC.GetHotelRooms(parameters);
+		hotelRooms = HotelController.GetHotelRooms(parameters); 
 	    HotelRoom cheapestRoom = null;
 	    double roomPrice = Double.POSITIVE_INFINITY;
-	    for (HotelRoom room : Rooms) {
-			if (room.getPricePerNight() <= roomPrice) cheapestRoom = room;
+	    for (HotelRoom room : hotelRooms) {
+			if (room.getPricePerNight() < roomPrice) {
+				cheapestRoom = room;
+				roomPrice = cheapestRoom.getPricePerNight();
+				}
 		}
 	    return cheapestRoom;
 	}
 
 	private HotelRoom searchBestRoom(Parameters parameters){
 		// create array that holds in the available rooms 
-		ObservableList<HotelRoom> Rooms = hotelC.GetHotelRooms(parameters);
+		ObservableList<HotelRoom> Rooms = HotelController.GetHotelRooms(parameters);
 	    HotelRoom bestRoom = null;
 	    int hotelStar = 0;
 	    for (HotelRoom room : Rooms) {

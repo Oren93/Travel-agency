@@ -10,7 +10,7 @@ import application.Parameters;
  * Object that sanitizes parameters before sending them on to be used in tour queries.
  */
 public class TourController {
-    private final TourDb tourDb = new TourDb();
+    private final static TourDb tourDb = new TourDb();
 
     /**
      * Empty constructor.
@@ -67,13 +67,11 @@ public class TourController {
      * @return  An ObservableList that contains tours if the query worked and returned
      *          data, otherwise the list is empty.
      */
-    public ObservableList<Tour> searchTour(Parameters p) {
+    public static ObservableList<Tour> searchTour(Parameters p) {
         int difficulty = p.getdifficulty();
 
         int[] price = {p.getLowerPrice(), p.getMaxPrice()};
-        if(price[0]<=0) {
-            throw new IllegalArgumentException("Minimum price must be greater than zero");
-        }
+         
         if(price[0]>=price[1]) {
             throw new IllegalArgumentException("Minimum price must be less than maximum price");
         }
