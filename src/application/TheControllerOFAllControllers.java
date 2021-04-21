@@ -103,43 +103,29 @@ public class TheControllerOFAllControllers {
 		 //System.out.println("Package found: "+matrix.size());
 		 return matrix;
 	}
-	/*
-	 //Details for finding the convenient day tour. 
-		private static ObservableList<Tour> searchTours(LocalDate d,int budget, int days) {
-			ObservableList<Tour> dTour =  tours;
-			long voyageLength = (long) days;// = parameters.getcheckIn().until(parameters.getcheckOut(), ChronoUnit.DAYS);//total length in days of the trip. was long online, not sure if can be int
-			ObservableList<Tour> toReturn = FXCollections.observableArrayList();
-			ObservableList<TourDate> tourDates = FXCollections.observableArrayList();
-			for (long i=0; i<voyageLength; i++){
-				int tourPrice = Integer.MAX_VALUE;
-				Tour thisTour = null;
-	            TourDate thisTourDate = null;
-				for(Tour tour: dTour){
-					System.out.println("for");
-					if (tour.getPrice() <= tourPrice && budget >= tour.getPrice()) {
-						System.out.println("if1");
-						for(TourDate tourDate : Tour.getDates()) {
-							System.out.println("for2");
-							LocalDate today = d.plusDays(i);
-							if(today == tourDate.getDate().toLocalDate()) {
-								System.out.println("if2");
-								thisTour = tour;
-								tourPrice = tour.getPrice();
-	                            thisTourDate = tourDate;
-							}
-						}
-					}
-				}
-				toReturn.add(thisTour);
-				dTour.remove(thisTour);
-	            tourDates.add(thisTourDate);
-				int low =0;
-				int budg = budget - tourPrice;
-				int[] price = new int[] {low,budget};
-				//parameters.setPrice(price);
-			}
-			return toReturn;
+	boolean bookPackage(TourPackage p, Passenger pass, Parameters para){
+		boolean disability = false;
+		if (para.getdifficulty() == 10) disability = true;
+		ObservableList<Seat> availableSeatsDepart = getAvailableSeats(p.getFlights().get(0));
+		ObservableList<Seat> availableSeatsReturn = getAvailableSeats(p.getFlights().get(1));
+
+		ObservableList<Seat> SeatsDepart = FXCollections.observableArrayList();
+		ObservableList<Seat> SeatsReturn = FXCollections.observableArrayList();
+
+		for(int i = 0; i<para.getgroupSize(); i++) {
+			SeatsDepart.add(availableSeatsDepart.get(i));
+			SeatsReturn.add(availableSeatsReturn.get(i));
 		}
 
-*/
+		flightC.bookFlight(p.getFlights().get(0).getFlightNumber(), SeatsDepart, pass, 0, 0, 0, 0, disability);
+		flightC.bookFlight(p.getFlights().get(1).getFlightNumber(), SeatsReturn, pass, 0, 0, 0, 0, disability);
+
+		hotelC.bookRoom(p.getRoom().getHotelName(), p, pass);
+
+		String customerEmail = "";
+
+		for(int i=0; i<tourDates.size(); i++) { //tourDates needs to be kept somewhere
+			ReservationController.confirmBooking(searchTours(para).get(i), tourDates.get(i), p.getgroupSize(), pass.getLastName(), customerEmail);
+		}
+	}
 }
