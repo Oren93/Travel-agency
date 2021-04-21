@@ -156,5 +156,6 @@ public class TheControllerOFAllControllers {
 					ReservationController.confirmBooking(tour, date, p.getgroupSize(), pass.getLastName(), customerEmail);
 			}
 		}
+		return true;
 	}
 }
