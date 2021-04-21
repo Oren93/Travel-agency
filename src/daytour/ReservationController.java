@@ -1,5 +1,15 @@
 package daytour;
 
+<<<<<<< Updated upstream
+=======
+//import daytour.model.*;
+
+import static daytour.Utils.*;
+
+//import daytour.data.*;
+
+
+>>>>>>> Stashed changes
 /**
  * @author Team 3D
  *
