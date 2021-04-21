@@ -127,7 +127,7 @@ public class Controller implements Initializable {
 	ObservableList<String> list = FXCollections.observableArrayList("Easy","Moderate","Hard");
 	public ChoiceBox<String> choiceDeparture;
 	ObservableList<String> airporList = FXCollections.observableArrayList(
-			"Reykjavík","Akureyri","Ísafjörður","Egilstaðir");
+			"Reykjavï¿½k","Akureyri","ï¿½safjï¿½rï¿½ur","Egilstaï¿½ir");
 	public ChoiceBox<String> choiceDestination;
 	ObservableList<String> travelDestination = FXCollections.observableArrayList(
 			"South-west","North","west fjords","East fjords");
@@ -274,7 +274,7 @@ public class Controller implements Initializable {
 			TourPackage selected = new TourPackage(null,null,null,null); // next line won't work othewise
 			selected = tourP.get(index);
 			
-			//boolean confirmed = TheControllerOFAllControllers.bookRoom(selected,searchParam, person);
+			boolean confirmed = TheControllerOFAllControllers.bookPackage(selected,searchParam, person);
 			
 		} catch (Error e2) {
 		}
