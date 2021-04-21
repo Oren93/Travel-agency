@@ -92,4 +92,29 @@ public class TheControllerOFAllControllers {
 		 }
 		 return matrix;
 	}
+	boolean bookPackage(TourPackage p, Passenger pass, Parameters para){
+		boolean disability = false;
+		if (para.getdifficulty() == 10) disability = true;
+		ObservableList<Seat> availableSeatsDepart = getAvailableSeats(p.getFlights().get(0));
+		ObservableList<Seat> availableSeatsReturn = getAvailableSeats(p.getFlights().get(1));
+
+		ObservableList<Seat> SeatsDepart = FXCollections.observableArrayList();
+		ObservableList<Seat> SeatsReturn = FXCollections.observableArrayList();
+
+		for(int i = 0; i<para.getgroupSize(); i++) {
+			SeatsDepart.add(availableSeatsDepart.get(i));
+			SeatsReturn.add(availableSeatsReturn.get(i));
+		}
+
+		flightC.bookFlight(p.getFlights().get(0).getFlightNumber(), SeatsDepart, pass, 0, 0, 0, 0, disability);
+		flightC.bookFlight(p.getFlights().get(1).getFlightNumber(), SeatsReturn, pass, 0, 0, 0, 0, disability);
+
+		hotelC.bookRoom(p.getRoom().getHotelName(), p, pass);
+
+		String customerEmail = "";
+
+		for(int i=0; i<tourDates.size(); i++) { //tourDates needs to be kept somewhere
+			ReservationController.confirmBooking(searchTours(para).get(i), tourDates.get(i), p.getgroupSize(), pass.getLastName(), customerEmail);
+		}
+	}
 }
