@@ -77,11 +77,16 @@ public class Parameters {
 	}
 	
 	private void setCheckIn(LocalDate in) {
+		checkIn = in; // NOTE: this is for testing, instead of the commented code
+		// The following commented code is how the date search should be in a real implementation,
+		// But since this project is a school project the database is limited to certain date
+		// So you'd need to search for travel packages in the past to test the system.
+		/*
 		LocalDate today = LocalDate.now();
 		if (today.isBefore(in))
 			checkIn = in;
 		else
-			printError ("bokking date must be in the future");
+			printError ("booking date must be in the future");*/
 	}
 	
 	private void setCheckOut(LocalDate out) {
@@ -154,16 +159,16 @@ public class Parameters {
 		return tostring;
 	}
 
-	public String extractCode(int s) {
+	public static String extractCode(int s) {
 		switch(s) {
 		  case 1:
-			    return "Reykjavï¿½k";
+			    return "Reykjavík";
 		  case 2:
 			    return "Akureyri";
 		  case 3:
-			    return "ï¿½safjï¿½rï¿½ur";
+			    return "Ísafjörður";
 		  case 4:
-			    return "Egilstaï¿½ir";
+			    return "Egilstaðir";
 		  case 10:
 			    return "Handicaped accessibility";
 		  case 11:
